@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="in.co.snapqa.clientapp0903.SelectSubjectActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ToggleButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textOff="Mechanical"
+            android:textOn="Mechanical"
+            android:id="@+id/sub1toggle"
+            android:background="@drawable/button_main_subjects"
+            android:textColor="#FFFFFF"
+            android:layout_margin="8dp"
+            style="@style/Widget.AppCompat.Button.Borderless"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/mech_subjects">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation ="horizontal">
+
+                <ToggleButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textOff="Thermodynamics"
+                    android:textOn="Thermodynamics"
+                    android:id="@+id/thermodynamics"
+                    android:background="@drawable/button_rounded_corners"
+                    android:textColor="#03A9F4"
+                    android:layout_margin="8dp"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    />
+                <ToggleButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textOff="Heat Transfer"
+                    android:textOn="Heat Transfer"
+                    android:id="@+id/heat_transfer"
+                    android:background="@drawable/button_rounded_corners"
+                    android:textColor="#03A9F4"
+                    android:layout_margin="8dp"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    />
+                <ToggleButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textOff="Fluid"
+                    android:textOn="Fluid"
+                    android:id="@+id/fluid"
+                    android:background="@drawable/button_rounded_corners"
+                    android:textColor="#03A9F4"
+                    android:layout_margin="8dp"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation ="horizontal">
+
+                <ToggleButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textOff="Mechanics Of Materials"
+                    android:textOn="Mechanics Of Materials"
+                    android:id="@+id/select_subject_mom"
+                    android:background="@drawable/button_rounded_corners"
+                    android:textColor="#03A9F4"
+                    android:layout_margin="8dp"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    />
+                <ToggleButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textOff="Strength Of Materials"
+                    android:textOn="Strength Of Materials"
+                    android:id="@+id/select_subject_som"
+                    android:background="@drawable/button_rounded_corners"
+                    android:textColor="#03A9F4"
+                    android:layout_margin="8dp"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    />
+                <ToggleButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textOff="Dynamics"
+                    android:textOn="Dynamics"
+                    android:id="@+id/select_subject_dynamics"
+                    android:background="@drawable/button_rounded_corners"
+                    android:textColor="#03A9F4"
+                    android:layout_margin="8dp"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation ="horizontal">
+
+                <ToggleButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textOff="Machine Design"
+                    android:textOn="Machine Design"
+                    android:id="@+id/select_subject_machine_design"
+                    android:background="@drawable/button_rounded_corners"
+                    android:textColor="#03A9F4"
+                    android:layout_margin="8dp"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    />
+                <ToggleButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textOff="Manufacturing Processr"
+                    android:textOn="Manufacturing Process"
+                    android:id="@+id/select_subject_manufacturing_process"
+                    android:background="@drawable/button_rounded_corners"
+                    android:textColor="#03A9F4"
+                    android:layout_margin="8dp"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    />
+                <ToggleButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textOff="Design of Machine"
+                    android:textOn="Design of Machine"
+                    android:id="@+id/select_subject_design_of_machine"
+                    android:background="@drawable/button_rounded_corners"
+                    android:textColor="#03A9F4"
+                    android:layout_margin="8dp"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation ="horizontal">
+
+                <ToggleButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textOff="Thermodynamics"
+                    android:textOn="Thermodynamics"
+                    android:id="@+id/thermodynamics"
+                    android:background="@drawable/button_rounded_corners"
+                    android:textColor="#03A9F4"
+                    android:layout_margin="8dp"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    />
+                <ToggleButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textOff="Heat Transfer"
+                    android:textOn="Heat Transfer"
+                    android:id="@+id/heat_transfer"
+                    android:background="@drawable/button_rounded_corners"
+                    android:textColor="#03A9F4"
+                    android:layout_margin="8dp"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    />
+                <ToggleButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textOff="Fluid"
+                    android:textOn="Fluid"
+                    android:id="@+id/fluid"
+                    android:background="@drawable/button_rounded_corners"
+                    android:textColor="#03A9F4"
+                    android:layout_margin="8dp"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</ScrollView>
