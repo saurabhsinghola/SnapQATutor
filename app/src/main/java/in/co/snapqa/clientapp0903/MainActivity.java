@@ -1,6 +1,8 @@
 package in.co.snapqa.clientapp0903;
 
-import android.net.Uri;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,7 +18,30 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener , NewDealFragment.OnFragmentInteractionListener{
+        implements NavigationView.OnNavigationItemSelectedListener{
+
+    SharedPreferences sharedpreferences;
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String Key = "key";
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        String token = sharedpreferences.getString(Key, "notPresent");
+
+        if(token.equals("notPresent")){
+            Intent signInFirst = new Intent(MainActivity.this, SignInActivity.class);
+            startActivity(signInFirst);
+        }else {
+            NewDealsFragment newDealFragment = new NewDealsFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_frame_main_activity, newDealFragment).commit();
+        }
+
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +68,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        NewDealFragment newDealFragment = new NewDealFragment();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_frame_main_activity, newDealFragment).commit();
+
 
     }
 
@@ -77,6 +100,10 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         }
+        if(id == R.id.tutorProfile){
+            Intent tutorProfile = new Intent(MainActivity.this, TutorProfile.class);
+            startActivity(tutorProfile);
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -88,14 +115,10 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            NewDealFragment newDealFragment = new NewDealFragment();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content_frame_main_activity, newDealFragment).commit();
+
         } else if (id == R.id.nav_gallery) {
 
-            NewDealFragment newDealFragment = new NewDealFragment();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content_frame_main_activity, newDealFragment);
+
 
         } else if (id == R.id.nav_slideshow) {
 
@@ -112,8 +135,5 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
 
-    }
 }

@@ -2,10 +2,12 @@
 <resources>
     <color name="colorPrimary">#03A9F4</color>
     <color name="colorPrimaryDark">#0288D1</color>
-    <color name="colorAccent">#009688</color>
+    <color name="colorAccent">#7CEA9C</color>
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#757575</color>
     <color name="colorDivider">#BDBDBD</color>
+    <color name="colorYellow">#F0C808</color>
+    <color name="colorTurquoise">#55D6BE</color>
     <!---<color name="colorButtonBlue">"#2E66FF"</color>
     <color name="colorButtonWhite">#FFFFFF</color> -->
 </resources>

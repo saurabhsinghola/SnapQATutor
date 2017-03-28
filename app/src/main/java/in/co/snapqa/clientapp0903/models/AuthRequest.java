@@ -15,8 +15,7 @@ public class AuthRequest {
         return token;
     }
 
-    public void setToken(String s) {
+    public void setToken(String token) {
         this.token = token;
     }
-
 }

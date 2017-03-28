@@ -39,7 +39,7 @@ public class SignUpActivity extends AppCompatActivity {
         signUpPassword = (EditText) findViewById(R.id.signuppassword);
         signUpPhone = (EditText) findViewById(R.id.signupphone);
 
-        Retrofit retrofit = new Retrofit.Builder()
+        final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(getString(R.string.api_url))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -63,7 +63,7 @@ public class SignUpActivity extends AppCompatActivity {
                  *
                  *************************************************/
 
-                SignUpRequest signUpRequest = new SignUpRequest();
+                final SignUpRequest signUpRequest = new SignUpRequest();
 
                 signUpRequest.setPhone(signUpPhone.getText().toString());
                 signUpRequest.setPassword(signUpPassword.getText().toString());
@@ -77,6 +77,8 @@ public class SignUpActivity extends AppCompatActivity {
                     public void onResponse(Call<SignUpResponse> call, Response<SignUpResponse> response) {
                         SignUpResponse signUpResponse = response.body();
                         int statusCode = response.code();
+                        Log.d("response:  ", ""+response.body().getToken());
+                        Log.d("Signup response  : ", ""+signUpResponse.toString());
                         if(signUpResponse.message.equals("Successful")){
                             Toast.makeText(SignUpActivity.this, "Success", Toast.LENGTH_LONG).show();
                             Log.d("status code: ", "" + statusCode);

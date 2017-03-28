@@ -25,17 +25,6 @@ public class TokenResponse {
         return token;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
-    public void setToken(String token) {
-        this.token = token;
-    }
 
-    public TokenResponse(String message, String token) {
-
-        this.message = message;
-        this.token = token;
-    }
 }
