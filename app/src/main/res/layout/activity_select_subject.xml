@@ -14,25 +14,30 @@
 
         <ToggleButton
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="72dp"
             android:textOff="Mechanical"
             android:textOn="Mechanical"
             android:id="@+id/sub1toggle"
-            android:background="@drawable/button_main_subjects"
-            android:textColor="#FFFFFF"
-            android:layout_margin="8dp"
-            style="@style/Widget.AppCompat.Button.Borderless"/>
+            android:textColor="#455A64"
+            android:background="#ECEFF1"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            style="@style/Base.Widget.AppCompat.Button.Colored"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:id="@+id/mech_subjects">
+            android:id="@+id/mech_subjects"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation ="horizontal">
+                android:orientation ="horizontal"
+                android:gravity="center_vertical">
 
                 <ToggleButton
                     android:layout_width="wrap_content"
@@ -45,7 +50,8 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
+                    android:textStyle="bold"
                     />
                 <ToggleButton
                     android:layout_width="wrap_content"
@@ -58,20 +64,23 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
+                    android:textStyle="bold"
                     />
+
                 <ToggleButton
+                    android:id="@+id/select_subject_fluid"
+                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/button_rounded_corners"
+                    android:padding="10dp"
+                    android:textColor="#03A9F4"
                     android:textOff="Fluid Mechanics"
                     android:textOn="Fluid Mechanics"
-                    android:id="@+id/select_subject_fluid"
-                    android:background="@drawable/button_rounded_corners"
-                    android:textColor="#03A9F4"
-                    android:layout_margin="8dp"
-                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:textStyle="bold"
                     />
 
             </LinearLayout>
@@ -93,7 +102,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -107,7 +116,8 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
+                    android:minLines="2"
                     />
 
                 <ToggleButton
@@ -121,7 +131,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
 
@@ -133,18 +143,17 @@
                 android:orientation ="horizontal">
 
                 <ToggleButton
+                    android:id="@+id/select_subject_internal_combustion"
+                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/button_rounded_corners"
+                    android:padding="10dp"
+                    android:textColor="#03A9F4"
                     android:textOff="Internal Combustion"
                     android:textOn="Internal Combustion"
-                    android:id="@+id/select_subject_internal_combustion"
-                    android:background="@drawable/button_rounded_corners"
-                    android:textColor="#03A9F4"
-                    android:layout_margin="8dp"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:textSize="10dp"
-                    android:padding="4dp"
-                    />
+                    android:textSize="10dp" />
 
                 <ToggleButton
                     android:layout_width="wrap_content"
@@ -157,8 +166,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
-                    />
+                    android:padding="10dp"                    />
 
                 <ToggleButton
                     android:layout_width="wrap_content"
@@ -171,8 +179,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
-                    />
+                    android:padding="10dp"                    />
 
             </LinearLayout>
 
@@ -192,7 +199,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -206,7 +213,8 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
+                    android:maxWidth="130dp"
                     />
 
                 <ToggleButton
@@ -220,7 +228,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
 
@@ -242,7 +250,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -256,7 +264,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -270,7 +278,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
 
@@ -293,7 +301,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -307,7 +315,8 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
+                    android:maxWidth="120dp"
                     />
 
                 <ToggleButton
@@ -321,7 +330,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
             </LinearLayout>
@@ -342,7 +351,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -356,7 +365,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -370,7 +379,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
             </LinearLayout>
@@ -392,7 +401,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -406,7 +415,8 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
+                    android:maxWidth="120dp"
                     />
 
                 <ToggleButton
@@ -420,7 +430,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
 
@@ -443,7 +453,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -457,7 +467,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -471,7 +481,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
             </LinearLayout>
@@ -493,7 +503,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -507,7 +517,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
             </LinearLayout>
@@ -515,16 +525,22 @@
 
         </LinearLayout>
 
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#c0c0c0"
+            />
+
         <ToggleButton
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="72dp"
             android:textOff="Civil"
             android:textOn="Civil"
             android:id="@+id/civil_subject_toggle"
-            android:background="@drawable/button_main_subjects"
-            android:textColor="#FFFFFF"
-            android:layout_margin="8dp"
-            style="@style/Widget.AppCompat.Button.Borderless"/>
+            android:textColor="#455A64"
+            android:background="#ECEFF1"
+            android:textSize="16dp"
+            style="@style/Base.Widget.AppCompat.Button.Colored"/>
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -548,7 +564,7 @@
                         android:layout_margin="8dp"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:textSize="10dp"
-                        android:padding="4dp"
+                        android:padding="10dp"
                         />
 
                     <ToggleButton
@@ -562,7 +578,7 @@
                         android:layout_margin="8dp"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:textSize="10dp"
-                        android:padding="4dp"
+                        android:padding="10dp"
                         />
 
                     <ToggleButton
@@ -576,7 +592,7 @@
                         android:layout_margin="8dp"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:textSize="10dp"
-                        android:padding="4dp"
+                        android:padding="10dp"
                         />
 
 
@@ -598,7 +614,7 @@
                         android:layout_margin="8dp"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:textSize="10dp"
-                        android:padding="4dp"
+                        android:padding="10dp"
                         />
 
                     <ToggleButton
@@ -612,7 +628,7 @@
                         android:layout_margin="8dp"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:textSize="10dp"
-                        android:padding="4dp"
+                        android:padding="10dp"
                         />
 
 
@@ -635,7 +651,7 @@
                         android:layout_margin="8dp"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:textSize="10dp"
-                        android:padding="4dp"
+                        android:padding="10dp"
                         />
 
                     <ToggleButton
@@ -649,7 +665,7 @@
                         android:layout_margin="8dp"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:textSize="10dp"
-                        android:padding="4dp"
+                        android:padding="10dp"
                         />
 
                     <ToggleButton
@@ -663,7 +679,7 @@
                         android:layout_margin="8dp"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:textSize="10dp"
-                        android:padding="4dp"
+                        android:padding="10dp"
                         />
 
 
@@ -686,7 +702,7 @@
                         android:layout_margin="8dp"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:textSize="10dp"
-                        android:padding="4dp"
+                        android:padding="10dp"
                         />
 
                     <ToggleButton
@@ -700,7 +716,7 @@
                         android:layout_margin="8dp"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:textSize="10dp"
-                        android:padding="4dp"
+                        android:padding="10dp"
                         />
 
                     <ToggleButton
@@ -714,7 +730,7 @@
                         android:layout_margin="8dp"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:textSize="10dp"
-                        android:padding="4dp"
+                        android:padding="10dp"
                         />
 
 
@@ -737,23 +753,29 @@
                         android:layout_margin="8dp"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:textSize="10dp"
-                        android:padding="4dp"
+                        android:padding="10dp"
                         />
 
                 </LinearLayout>
 
             </LinearLayout>
 
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#c0c0c0"
+            />
+
         <ToggleButton
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="72dp"
             android:textOff="Electrical and Electronics"
             android:textOn="Electrical and Electronics"
             android:id="@+id/electrical_and_electronic_subject_toggle"
-            android:background="@drawable/button_main_subjects"
-            android:textColor="#FFFFFF"
-            android:layout_margin="8dp"
-            style="@style/Widget.AppCompat.Button.Borderless"/>
+            android:textColor="#455A64"
+            android:background="#ECEFF1"
+            android:textSize="16dp"
+            style="@style/Base.Widget.AppCompat.Button.Colored"/>
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -777,7 +799,7 @@
                         android:layout_margin="8dp"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:textSize="10dp"
-                        android:padding="4dp"
+                        android:padding="10dp"
 
                         />
                     <ToggleButton
@@ -791,7 +813,7 @@
                         android:layout_margin="8dp"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:textSize="10dp"
-                        android:padding="4dp"
+                        android:padding="10dp"
                         />
                     <ToggleButton
                         android:layout_width="wrap_content"
@@ -804,7 +826,7 @@
                         android:layout_margin="8dp"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:textSize="10dp"
-                        android:padding="4dp"
+                        android:padding="10dp"
                         />
                 </LinearLayout>
 
@@ -824,7 +846,7 @@
                         android:layout_margin="8dp"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:textSize="10dp"
-                        android:padding="4dp"
+                        android:padding="10dp"
                         />
 
                     <ToggleButton
@@ -838,7 +860,7 @@
                         android:layout_margin="8dp"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:textSize="10dp"
-                        android:padding="4dp"
+                        android:padding="10dp"
                         />
 
                     <ToggleButton
@@ -852,7 +874,7 @@
                         android:layout_margin="8dp"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:textSize="10dp"
-                        android:padding="4dp"
+                        android:padding="10dp"
                         />
 
                 </LinearLayout>
@@ -873,7 +895,7 @@
                         android:layout_margin="8dp"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:textSize="10dp"
-                        android:padding="4dp"
+                        android:padding="10dp"
                         />
 
                     <ToggleButton
@@ -887,7 +909,7 @@
                         android:layout_margin="8dp"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:textSize="10dp"
-                        android:padding="4dp"
+                        android:padding="10dp"
                         />
 
                     <ToggleButton
@@ -901,7 +923,7 @@
                         android:layout_margin="8dp"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:textSize="10dp"
-                        android:padding="4dp"
+                        android:padding="10dp"
                         />
 
                 </LinearLayout>
@@ -922,23 +944,29 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
             </LinearLayout>
 
         </LinearLayout>
 
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#c0c0c0"
+            />
+
         <ToggleButton
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="72dp"
             android:textOff="Mathematics"
             android:textOn="Mathematics"
             android:id="@+id/mathematics_subject_toggle"
-            android:background="@drawable/button_main_subjects"
-            android:textColor="#FFFFFF"
-            android:layout_margin="8dp"
-            style="@style/Widget.AppCompat.Button.Borderless"/>
+            android:textColor="#455A64"
+            android:background="#ECEFF1"
+            android:textSize="16dp"
+            style="@style/Base.Widget.AppCompat.Button.Colored"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -962,7 +990,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -976,7 +1004,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -990,7 +1018,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
             </LinearLayout>
@@ -1011,7 +1039,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -1025,7 +1053,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -1039,7 +1067,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
             </LinearLayout>
@@ -1060,7 +1088,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -1074,7 +1102,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -1088,7 +1116,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
             </LinearLayout>
@@ -1109,7 +1137,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -1123,7 +1151,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -1137,7 +1165,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
 
@@ -1159,7 +1187,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
 
@@ -1167,16 +1195,22 @@
 
         </LinearLayout>
 
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#c0c0c0"
+            />
+
         <ToggleButton
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="72dp"
             android:textOff="Physics"
             android:textOn="Physics"
             android:id="@+id/physics_subject_toggle"
-            android:background="@drawable/button_main_subjects"
-            android:textColor="#FFFFFF"
-            android:layout_margin="8dp"
-            style="@style/Widget.AppCompat.Button.Borderless"/>
+            android:textColor="#455A64"
+            android:background="#ECEFF1"
+            android:textSize="16dp"
+            style="@style/Base.Widget.AppCompat.Button.Colored"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -1200,7 +1234,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -1214,7 +1248,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -1228,7 +1262,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
             </LinearLayout>
@@ -1249,7 +1283,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -1263,7 +1297,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -1277,7 +1311,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
             </LinearLayout>
@@ -1298,22 +1332,28 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
             </LinearLayout>
             </LinearLayout>
 
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#c0c0c0"
+            />
+
         <ToggleButton
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="72dp"
             android:textOff="Chemistry"
             android:textOn="Chemistry"
             android:id="@+id/chemistry_subject_toggle"
-            android:background="@drawable/button_main_subjects"
-            android:textColor="#FFFFFF"
-            android:layout_margin="8dp"
-            style="@style/Widget.AppCompat.Button.Borderless"/>
+            android:textColor="#455A64"
+            android:background="#ECEFF1"
+            android:textSize="16dp"
+            style="@style/Base.Widget.AppCompat.Button.Colored"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -1337,7 +1377,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -1351,7 +1391,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -1365,7 +1405,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
             </LinearLayout>
@@ -1386,23 +1426,29 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
             </LinearLayout>
 
         </LinearLayout>
 
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#c0c0c0"
+            />
+
         <ToggleButton
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="72dp"
             android:textOff="Software Works"
             android:textOn="Software Works"
             android:id="@+id/software_works_subject_toggle"
-            android:background="@drawable/button_main_subjects"
-            android:textColor="#FFFFFF"
-            android:layout_margin="8dp"
-            style="@style/Widget.AppCompat.Button.Borderless"/>
+            android:textColor="#455A64"
+            android:background="#ECEFF1"
+            android:textSize="16dp"
+            style="@style/Base.Widget.AppCompat.Button.Colored"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -1426,7 +1472,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -1440,7 +1486,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -1454,7 +1500,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
             </LinearLayout>
@@ -1475,7 +1521,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -1489,7 +1535,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -1503,7 +1549,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
             </LinearLayout>
@@ -1524,7 +1570,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -1538,7 +1584,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -1552,7 +1598,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
             </LinearLayout>
@@ -1561,16 +1607,22 @@
 
         </LinearLayout>
 
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#c0c0c0"
+            />
+
         <ToggleButton
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="72dp"
             android:textOff="Economics"
             android:textOn="Economics"
             android:id="@+id/economics_subject_toggle"
-            android:background="@drawable/button_main_subjects"
-            android:textColor="#FFFFFF"
-            android:layout_margin="8dp"
-            style="@style/Widget.AppCompat.Button.Borderless"/>
+            android:textColor="#455A64"
+            android:background="#ECEFF1"
+            android:textSize="16dp"
+            style="@style/Base.Widget.AppCompat.Button.Colored"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -1594,7 +1646,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -1608,7 +1660,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -1622,7 +1674,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
             </LinearLayout>
@@ -1643,7 +1695,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -1657,7 +1709,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -1671,23 +1723,29 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
             </LinearLayout>
 
         </LinearLayout>
 
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#c0c0c0"
+            />
+
         <ToggleButton
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="72dp"
             android:textOff="Misc."
             android:textOn="Misc."
             android:id="@+id/misc_subject_toggle"
-            android:background="@drawable/button_main_subjects"
-            android:textColor="#FFFFFF"
-            android:layout_margin="8dp"
-            style="@style/Widget.AppCompat.Button.Borderless"/>
+            android:textColor="#455A64"
+            android:background="#ECEFF1"
+            android:textSize="16dp"
+            style="@style/Base.Widget.AppCompat.Button.Colored"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -1711,7 +1769,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -1725,7 +1783,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -1739,7 +1797,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
             </LinearLayout>
@@ -1760,7 +1818,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -1774,7 +1832,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -1788,7 +1846,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
             </LinearLayout>
@@ -1809,7 +1867,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -1823,7 +1881,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
                 <ToggleButton
@@ -1837,7 +1895,7 @@
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
                     />
 
             </LinearLayout>
@@ -1851,24 +1909,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textOff="Engineering Cost Analysis"
-                    android:textOn="Probability"
+                    android:textOn="Engineering Cost Analysis"
                     android:id="@+id/select_subject_engineering_cost_analysis"
                     android:background="@drawable/button_rounded_corners"
                     android:textColor="#03A9F4"
                     android:layout_margin="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="10dp"
-                    android:padding="4dp"
+                    android:padding="10dp"
+                    android:elevation="2dp"
                     />
 
             </LinearLayout>
 
         </LinearLayout>
+
+
         
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/confirm_subject">
+            android:layout_height="72dp"
+            android:textSize="16dp"
+            android:text="Submit"
+            android:id="@+id/confirm_subject"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:background="@color/colorPrimary"
+            android:hapticFeedbackEnabled="true"
+            android:textColor="#FFFFFF">
 
         </Button>
 

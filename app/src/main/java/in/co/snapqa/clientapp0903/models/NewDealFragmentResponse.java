@@ -64,10 +64,17 @@ public class NewDealFragmentResponse {
     @SerializedName("dealType")
     @Expose
     String dealType;
-    public NewDealFragmentResponse(){
-        // do nothing
-    }
-    public NewDealFragmentResponse(String _id, int pointsOffered, String subjectName, String clientName, Date dealDate, String adminName, int __v, List bookedStatus, Boolean isActive, List feedback, List ratingArray, Date createdAt, String dealType) {
+
+
+    @SerializedName("timeTo")
+    @Expose
+    String timeTo;
+
+    @SerializedName("timeFrom")
+    @Expose
+    String timeFrom;
+
+    public NewDealFragmentResponse(String _id, int pointsOffered, String subjectName, String clientName, Date dealDate, String adminName, int __v, List bookedStatus, Boolean isActive, List feedback, List ratingArray, Date createdAt, String dealType, String timeTo, String timeFrom) {
         this._id = _id;
         this.pointsOffered = pointsOffered;
         this.subjectName = subjectName;
@@ -81,6 +88,8 @@ public class NewDealFragmentResponse {
         this.ratingArray = ratingArray;
         this.createdAt = createdAt;
         this.dealType = dealType;
+        this.timeTo = timeTo;
+        this.timeFrom = timeFrom;
     }
 
     public String get_id() {
@@ -185,5 +194,21 @@ public class NewDealFragmentResponse {
 
     public void setDealType(String dealType) {
         this.dealType = dealType;
+    }
+
+    public String getTimeTo() {
+        return timeTo;
+    }
+
+    public void setTimeTo(String timeTo) {
+        this.timeTo = timeTo;
+    }
+
+    public String getTimeFrom() {
+        return timeFrom;
+    }
+
+    public void setTimeFrom(String timeFrom) {
+        this.timeFrom = timeFrom;
     }
 }

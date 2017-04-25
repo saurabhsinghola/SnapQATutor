@@ -18,15 +18,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/tutor_profile_contact_layout">
 
-            <android.support.design.widget.FloatingActionButton
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="12dp"
-                android:layout_marginTop="12dp"
-                android:src="@drawable/ic_edit_black_24dp"
-                android:id="@+id/tutor_profile_contact_layout_edit_fab"/>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -47,23 +38,22 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="match_parent"
-                        android:src="@drawable/ic_phone_black_24dp"/>
+                        android:src="@drawable/smartphone"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="9933938765"
-                        android:text="9933938765"
                         android:textSize="16dp"
                         android:layout_marginLeft="24dp"
-                        android:gravity="center_vertical"/>
+                        android:gravity="center_vertical"
+                        android:id="@+id/tutor_profile_phone_number"/>
 
                 </LinearLayout>
 
 
                 <View
                     android:layout_width="fill_parent"
-                    android:layout_height="2dp"
+                    android:layout_height="1dp"
                     android:background="#c0c0c0"
                     android:layout_marginLeft="24dp"
                     android:layout_marginRight="24dp"/>
@@ -79,49 +69,48 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="match_parent"
-                        android:src="@drawable/what"/>
+                        android:src="@drawable/whatsapp"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="9933938765"
-                        android:text="7001594959"
                         android:textSize="16dp"
                         android:layout_marginLeft="24dp"
-                        android:gravity="center_vertical"/>
+                        android:gravity="center_vertical"
+                        android:id="@+id/tutor_profile_whatsapp_number"/>
 
                 </LinearLayout>
-
                 <View
                     android:layout_width="fill_parent"
-                    android:layout_height="2dp"
+                    android:layout_height="1dp"
                     android:background="#c0c0c0"
                     android:layout_marginLeft="24dp"
                     android:layout_marginRight="24dp"/>
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
+                    android:layout_gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:padding="16dp"
-                    android:layout_gravity="center_vertical">
+                    android:padding="16dp">
 
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="match_parent"
-                        android:src="@drawable/ic_mail_black_24dp"/>
+                        android:src="@drawable/mai" />
 
                     <TextView
+                        android:id="@+id/tutor_profile_email_id"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="saurabhsinghola@gmail.com"
-                        android:text="saurabhsinghola@gmail.com"
-                        android:textSize="16dp"
                         android:layout_marginLeft="24dp"
-                        android:gravity="center_vertical"/>
+                        android:gravity="center_vertical"
+                        android:textSize="16dp" />
 
                 </LinearLayout>
+
+
+
 
             </LinearLayout>
 
@@ -129,16 +118,64 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tutor_profile_contact_layout_edit">
+            android:layout_height="wrap_content">
 
             <android.support.design.widget.FloatingActionButton
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="12dp"
-                android:layout_marginTop="12dp"
-                android:id="@+id/tutor_profile_contact_layout_save"/>
+                android:layout_margin="12dp"
+                android:id="@+id/tutor_profile_specialization_edit"
+                android:src="@drawable/ic_edit_black_24dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="24dp"
+                android:background="#FFFFFF"
+                android:elevation="2dp"
+                android:orientation="vertical"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="56dp"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/creativity"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="16dp"
+                        android:layout_marginLeft="24dp"
+                        android:id="@+id/tutor_profile_specialization"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.design.widget.FloatingActionButton
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentRight="true"
+                android:layout_margin="12dp"
+                android:id="@+id/tutor_profile_payment_details_edit"
+                android:src="@drawable/ic_edit_black_24dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -148,37 +185,64 @@
                 android:elevation="2dp"
                 android:orientation="vertical">
 
-
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
                     android:orientation="horizontal"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="24dp"
+                    android:padding="16dp"
                     android:layout_gravity="center_vertical">
 
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="match_parent"
-                        android:src="@drawable/ic_phone_black_24dp"/>
+                        android:src="@drawable/idcard"/>
 
-                    <EditText
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="9933938765"
                         android:textSize="16dp"
                         android:layout_marginLeft="24dp"
-                        android:gravity="center_vertical"/>
+                        android:hint="7678656465465"
+                        android:gravity="center_vertical"
+                        android:id="@+id/tutor_profile_pan_number"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="#c0c0c0"
+                    android:layout_marginLeft="48dp"
+                    android:layout_marginRight="24dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:layout_gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/museum"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="16dp"
+                        android:layout_marginLeft="24dp"
+                        android:gravity="center_vertical"
+                        android:id="@+id/tutor_profile_account_number"/>
 
                 </LinearLayout>
 
 
                 <View
                     android:layout_width="fill_parent"
-                    android:layout_height="2dp"
+                    android:layout_height="1dp"
                     android:background="#c0c0c0"
-                    android:layout_marginLeft="24dp"
+                    android:layout_marginLeft="48dp"
                     android:layout_marginRight="24dp"/>
 
 
@@ -186,30 +250,30 @@
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
                     android:orientation="horizontal"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="24dp"
+                    android:padding="16dp"
                     android:layout_gravity="center_vertical">
 
                     <ImageView
-                        android:layout_width="24dp"
+                        android:layout_width="22dp"
                         android:layout_height="match_parent"
-                        android:src="@drawable/what"/>
+                        android:src="@drawable/checked"/>
 
-                    <EditText
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="9933938765"
                         android:textSize="16dp"
                         android:layout_marginLeft="24dp"
-                        android:gravity="center_vertical"/>
+                        android:gravity="center_vertical"
+                        android:hint="khfkudshdkjshfkjahf"
+                        android:id="@+id/tutor_profile_ifsc_code"/>
 
                 </LinearLayout>
 
                 <View
                     android:layout_width="fill_parent"
-                    android:layout_height="2dp"
+                    android:layout_height="1dp"
                     android:background="#c0c0c0"
-                    android:layout_marginLeft="24dp"
+                    android:layout_marginLeft="48dp"
                     android:layout_marginRight="24dp"/>
 
 
@@ -217,196 +281,73 @@
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
                     android:orientation="horizontal"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="24dp"
+                    android:padding="16dp"
                     android:layout_gravity="center_vertical">
 
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="match_parent"
-                        android:src="@drawable/ic_mail_black_24dp"/>
+                        android:src="@drawable/wallet"/>
 
-                    <EditText
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:hint="saurabhsinghola@gmail.com"
                         android:textSize="16dp"
                         android:layout_marginLeft="24dp"
-                        android:gravity="center_vertical"/>
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:id="@+id/tutor_profile_current_balance"/>
+
+                    <Button
+                        android:layout_width="48dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/redeem_button_layout"
+                        android:text="Redeem"
+                        android:textSize="8dp"
+                        android:gravity="center"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="16dp"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="#c0c0c0"
+                    android:layout_marginLeft="48dp"
+                    android:layout_marginRight="24dp"/>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:layout_gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/rupee"/>
+
+                    <TextView
+                        android:id="@+id/tutor_profile_total_earning"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="24dp"
+                        android:gravity="center_vertical"
+                        android:textSize="16dp" />
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_attach_money_black_24dp"/>
 
                 </LinearLayout>
 
             </LinearLayout>
-
         </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="24dp"
-            android:background="#FFFFFF"
-            android:elevation="2dp"
-            android:orientation="vertical"
-            android:gravity="center_vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="56dp"
-                android:orientation="horizontal"
-                android:padding="16dp"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_pi_box_black_24dp"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="16dp"
-                    android:hint="Thermodynamics, Fluid, Heat Transfer, Blah, Blh, Blah ....."
-                    android:layout_marginLeft="24dp"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="24dp"
-            android:background="#FFFFFF"
-            android:elevation="2dp"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:orientation="horizontal"
-                android:padding="16dp"
-                android:layout_gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_account_balance_black_24dp"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="1234567891012"
-                    android:textSize="16dp"
-                    android:layout_marginLeft="24dp"
-                    android:gravity="center_vertical"/>
-
-            </LinearLayout>
-
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="2dp"
-                android:background="#c0c0c0"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"/>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:orientation="horizontal"
-                android:padding="16dp"
-                android:layout_gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_format_italic_black_24dp"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="SBIN0000652"
-                    android:textSize="16dp"
-                    android:layout_marginLeft="24dp"
-                    android:gravity="center_vertical"/>
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="2dp"
-                android:background="#c0c0c0"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"/>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:orientation="horizontal"
-                android:padding="16dp"
-                android:layout_gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_account_balance_wallet_black_24dp"/>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:hint="2000"
-                    android:textSize="16dp"
-                    android:layout_marginLeft="24dp"
-                    android:gravity="center_vertical"
-                    android:layout_weight="1"/>
-
-                <Button
-                    android:layout_width="48dp"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/redeem_button_layout"
-                    android:text="Redeem"
-                    android:textSize="8dp"
-                    android:gravity="center"
-                    android:textColor="@color/colorPrimary"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="16dp"/>
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="2dp"
-                android:background="#c0c0c0"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"/>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:orientation="horizontal"
-                android:padding="16dp"
-                android:layout_gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_attach_money_black_24dp"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="60000"
-                    android:textSize="16dp"
-                    android:layout_marginLeft="24dp"
-                    android:gravity="center_vertical"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
 
     </LinearLayout>
 

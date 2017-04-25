@@ -35,5 +35,4 @@
     <include layout="@layout/content_tutor_profile" />
 
 
-
 </android.support.design.widget.CoordinatorLayout>

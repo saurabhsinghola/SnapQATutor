@@ -9,6 +9,15 @@ public class SignUpRequest {
     public String Phone;
     public String Password;
     public String Email;
+    public String Whatsapp;
+
+    public SignUpRequest(String name, String phone, String password, String email, String whatsapp) {
+        Name = name;
+        Phone = phone;
+        Password = password;
+        Email = email;
+        Whatsapp = whatsapp;
+    }
 
     public String getName() {
         return Name;
@@ -40,5 +49,13 @@ public class SignUpRequest {
 
     public void setEmail(String email) {
         Email = email;
+    }
+
+    public String getWhatsapp() {
+        return Whatsapp;
+    }
+
+    public void setWhatsapp(String whatsapp) {
+        Whatsapp = whatsapp;
     }
 }

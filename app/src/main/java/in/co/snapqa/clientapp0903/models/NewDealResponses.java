@@ -17,12 +17,13 @@ public class NewDealResponses {
     @Expose
     List<NewDealFragmentResponse> responses;
 
-    public NewDealResponses(List<NewDealFragmentResponse> responses) {
-        this.responses = responses;
-    }
+    @SerializedName("message")
+    @Expose
+    String message;
 
-    public NewDealResponses() {
-        this.responses = new ArrayList();
+    public NewDealResponses(List<NewDealFragmentResponse> responses, String message) {
+        this.responses = responses;
+        this.message = message;
     }
 
     public List<NewDealFragmentResponse> getResponses() {
@@ -31,5 +32,13 @@ public class NewDealResponses {
 
     public void setResponses(List<NewDealFragmentResponse> responses) {
         this.responses = responses;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

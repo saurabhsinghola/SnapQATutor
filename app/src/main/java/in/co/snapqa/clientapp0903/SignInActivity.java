@@ -4,8 +4,14 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
+import android.graphics.drawable.Drawable;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,53 +21,123 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.keiferstone.nonet.NoNet;
+import com.subhrajyoti.passwordview.PasswordView;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import in.co.snapqa.clientapp0903.interfaces.API;
 import in.co.snapqa.clientapp0903.models.TokenRequest;
 import in.co.snapqa.clientapp0903.models.TokenResponse;
 import in.co.snapqa.clientapp0903.network.APIClient;
+import me.anwarshahriar.calligrapher.Calligrapher;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class SignInActivity extends AppCompatActivity {
 
     Button signInButton, signUpActivity;
-    EditText emailId, password, fullName, phone;
+    EditText emailId, fullName, phone;
 
-    TextView signUpText;
+    PasswordView password;
+
+    Drawable drawable;
+
+    TextView signUpText, forgotPassword;
 
     ProgressDialog progressDialog;
+
+    Boolean doubleBackToExitPressedOnce = false;
 
     private static final String TAG = "SignIn";
 
     int statusCode;
 
-    SharedPreferences sharedpreferences;
-
     String email, pass, responseServer, phoneNumber, fName;
+
+    SharedPreferences sharedpreferences;
 
     public static final String MyPREFERENCES = "MyPrefs" ;
     public static final String Key = "key";
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        NoNet.monitor(this)
+                .poll()
+                .snackbar()
+                .start();
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            Intent startMain = new Intent(Intent.ACTION_MAIN);
+            startMain.addCategory(Intent.CATEGORY_HOME);
+            startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startMain.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(startMain);
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
         setContentView(R.layout.activity_sign_in);
 
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/opensanslight.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .build()
+        );
 
         signInButton = (Button) findViewById(R.id.signinbutton);
         signUpText = (TextView) findViewById(R.id.signUpText);
-        password = (EditText) findViewById(R.id.signinpassword);
+        password = (PasswordView) findViewById(R.id.signinpassword);
         phone = (EditText) findViewById(R.id.signinphone);
+        forgotPassword = (TextView) findViewById(R.id.sign_in_forgot_password);
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignInActivity.this, ForgotPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        drawable = (Drawable) getResources().getDrawable(R.drawable.user);
 
 
+        getSupportActionBar().setTitle("Sign In");
 
+        NoNet.configure()
+                .endpoint("https://google.com")
+                .timeout(5)
+                .connectedPollFrequency(60)
+                .disconnectedPollFrequency(1);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(getString(R.string.api_url))
@@ -70,13 +146,11 @@ public class SignInActivity extends AppCompatActivity {
 
         final API service = retrofit.create(API.class);
 
-
-
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                //progressDialog = ProgressDialog.show(SignInActivity.this, "Just a sec!", "Logging you in", true);
+                progressDialog = ProgressDialog.show(SignInActivity.this, "Just a sec!", "Logging you in", true);
 
                 pass = password.getText().toString();
                 phoneNumber = phone.getText().toString();
@@ -118,6 +192,7 @@ public class SignInActivity extends AppCompatActivity {
                             SharedPreferences.Editor editor = sharedpreferences.edit();
 
                             editor.putString(Key, tok);
+                            editor.putString("Phone", phone.getText().toString());
                             editor.commit();
 
                             //OTP Verification
@@ -125,7 +200,7 @@ public class SignInActivity extends AppCompatActivity {
                             startActivity(mainActivity);
 
                         } else if(tokenResponse.message.equals("Unsuccessful")){
-                            Toast.makeText(SignInActivity.this, "already existing", Toast.LENGTH_LONG).show();
+                            Toast.makeText(SignInActivity.this, "Incorrect credentials", Toast.LENGTH_LONG).show();
                             Log.d("status code: ", "" + statusCode);
                         }else {
                             Log.d("else: ", "" + response.body().getMessage());
@@ -138,11 +213,11 @@ public class SignInActivity extends AppCompatActivity {
                         Log.d(TAG, "token response.gettoken:::" +response.body().getToken());
 
 
-                        //progressDialog.dismiss();
+                        progressDialog.dismiss();
 
                         //Changing Activity
-                        //Intent changeActivity = new Intent(SignInActivity.this, MainActivity.class);
-                        //startActivity(changeActivity);
+                        Intent changeActivity = new Intent(SignInActivity.this, MainActivity.class);
+                        startActivity(changeActivity);
 
                     }
 
@@ -150,15 +225,11 @@ public class SignInActivity extends AppCompatActivity {
                     public void onFailure(Call<TokenResponse> call, Throwable t) {
                         Toast.makeText(SignInActivity.this, "Failed", Toast.LENGTH_LONG).show();
 
-                        //progressDialog.dismiss();
+                        progressDialog.dismiss();
                     }
                 });
-
-
-
             }
         });
-
 
         signUpText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,7 +238,5 @@ public class SignInActivity extends AppCompatActivity {
                 startActivity(changeActivity);
             }
         });
-
-
     }
 }

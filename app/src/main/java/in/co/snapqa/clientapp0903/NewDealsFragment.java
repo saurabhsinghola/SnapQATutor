@@ -1,7 +1,9 @@
 package in.co.snapqa.clientapp0903;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -19,11 +22,14 @@ import in.co.snapqa.clientapp0903.adapters.NewDealsRecyclerViewAdapter;
 import in.co.snapqa.clientapp0903.interfaces.API;
 import in.co.snapqa.clientapp0903.models.AuthRequest;
 import in.co.snapqa.clientapp0903.models.NewDealResponses;
+import me.anwarshahriar.calligrapher.Calligrapher;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
 /**
@@ -39,11 +45,17 @@ public class NewDealsFragment extends Fragment {
     public static final String Key = "key";
     NewDealsRecyclerViewAdapter newDealsRecyclerViewAdapter;
 
+    TextView tv;
+
+    ProgressDialog progressDialog;
+
 
 
     public NewDealsFragment() {
         // Required empty public constructor
     }
+
+
 
 
     @Override
@@ -52,7 +64,16 @@ public class NewDealsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_new_deals, container, false);
 
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/opensanslight.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .build()
+        );
+
         newDealsRecyclerView = (RecyclerView) view.findViewById(R.id.new_deals_rv);
+        tv = (TextView) view.findViewById(R.id.new_deals_fragment_rv_tv);
+        tv.setVisibility(View.GONE);
+        progressDialog = ProgressDialog.show(getActivity(), "Just a sec!", "Finding Deals", true);
 
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.sssZ")
@@ -76,19 +97,27 @@ public class NewDealsFragment extends Fragment {
         call.enqueue(new Callback<NewDealResponses>() {
             @Override
             public void onResponse(Call<NewDealResponses> call, Response<NewDealResponses> response) {
-                newDealResponses = response.body();
-                //Log.d("New deal resp:  ", "" + newDealResponses.getResponses().get(2).getAdminName());
+                if(response.body().getMessage().equals("Successful")){
+                    newDealResponses = response.body();
 
-                newDealsRecyclerViewAdapter = new NewDealsRecyclerViewAdapter(newDealResponses);
-                layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
-                newDealsRecyclerView.setLayoutManager(layoutManager);
-                newDealsRecyclerView.setAdapter(newDealsRecyclerViewAdapter);
+                    progressDialog.dismiss();
+                    //Log.d("New deal resp:  ", "" + newDealResponses.getResponses().get(2).getAdminName());
 
-
+                    newDealsRecyclerViewAdapter = new NewDealsRecyclerViewAdapter(newDealResponses);
+                    layoutManager = new LinearLayoutManager(getActivity());
+                    newDealsRecyclerView.setLayoutManager(layoutManager);
+                    newDealsRecyclerView.setAdapter(newDealsRecyclerViewAdapter);
+                }else if(response.body().getMessage().equals("Verification Error")){
+                    Intent verifyOTP = new Intent(getActivity(), VerifyOTPActivity.class);
+                    startActivity(verifyOTP);
+                }
             }
 
             @Override
             public void onFailure(Call<NewDealResponses> call, Throwable t) {
+
+                progressDialog.dismiss();
+                tv.setVisibility(View.VISIBLE);
 
             }
         });

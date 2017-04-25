@@ -1,33 +1,37 @@
 package in.co.snapqa.clientapp0903;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.AssetManager;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
-import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Locale;
 
 import in.co.snapqa.clientapp0903.interfaces.API;
 import in.co.snapqa.clientapp0903.models.SubjectAddRequest;
 import in.co.snapqa.clientapp0903.models.SubjectAddResponse;
-import mehdi.sakout.fancybuttons.FancyButton;
+import me.anwarshahriar.calligrapher.Calligrapher;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
+import static android.R.attr.typeface;
 
 public class SelectSubjectActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
 
@@ -49,10 +53,31 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
 
     Button selectSubject;
 
+    SharedPreferences sharedpreferences;
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String Key = "key";
+
+
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_subject);
+
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/opensanslight.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .build()
+        );
+
+        getSupportActionBar().setTitle("Choose Your Subjects");
+
+        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/opensanssemibold.ttf");
 
         mechanicalSubjects = (ToggleButton) findViewById(R.id.sub1toggle);
         civilSubjects = (ToggleButton) findViewById(R.id.civil_subject_toggle);
@@ -63,6 +88,17 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
         softwareSubjects = (ToggleButton) findViewById(R.id.software_works_subject_toggle);
         economicsSubjects = (ToggleButton) findViewById(R.id.economics_subject_toggle);
         miscSubjects = (ToggleButton) findViewById(R.id.misc_subject_toggle);
+
+        mechanicalSubjects.setTypeface(font);
+        civilSubjects.setTypeface(font);
+        electricalSubjects.setTypeface(font);
+        mathSubjects.setTypeface(font);
+        physicsSubjects.setTypeface(font);
+        chemistrySubjects.setTypeface(font);
+        softwareSubjects.setTypeface(font);
+        economicsSubjects.setTypeface(font);
+        miscSubjects.setTypeface(font);
+
 
         selectSubject = (Button) findViewById(R.id.confirm_subject);
 
@@ -215,12 +251,15 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
         manufacturingProcess.setOnCheckedChangeListener(this);
         materialScience.setOnCheckedChangeListener(this);
         compositeMaterial.setOnCheckedChangeListener(this);
+        measurement.setOnCheckedChangeListener(this);
+        controlSystem.setOnCheckedChangeListener(this);
         instrumentation.setOnCheckedChangeListener(this);
         finiteElementAnalysis.setOnCheckedChangeListener(this);
         engineeringDrawing.setOnCheckedChangeListener(this);
         solidWorks.setOnCheckedChangeListener(this);
         ansys.setOnCheckedChangeListener(this);
         autocad.setOnCheckedChangeListener(this);
+        matlabMechanical.setOnCheckedChangeListener(this);
         robotics.setOnCheckedChangeListener(this);
         staticsCivil.setOnCheckedChangeListener(this);
         dynamicsCivil.setOnCheckedChangeListener(this);
@@ -241,6 +280,7 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
         powerSystems.setOnCheckedChangeListener(this);
         electricalEngineering.setOnCheckedChangeListener(this);
         roboticsElectrical.setOnCheckedChangeListener(this);
+        matlabElectrical.setOnCheckedChangeListener(this);
         linearAlgebra.setOnCheckedChangeListener(this);
         precalculus.setOnCheckedChangeListener(this);
         calculus1.setOnCheckedChangeListener(this);
@@ -289,6 +329,9 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
         geophysics.setOnCheckedChangeListener(this);
         operationResearchMisc.setOnCheckedChangeListener(this);
         engineeringCosttAnalysis.setOnCheckedChangeListener(this);
+        measurementElectrical.setOnCheckedChangeListener(this);
+        controlSystemElectrical.setOnCheckedChangeListener(this);
+        matlab.setOnCheckedChangeListener(this);
 
 
 
@@ -473,8 +516,6 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
 
         subjectList = new ArrayList<String>();
 
-        getSupportActionBar().setTitle("Saurabh Singh Ola (Ola)");
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(getString(R.string.api_url))
                 .addConverterFactory(GsonConverterFactory.create())
@@ -482,11 +523,14 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
 
         final API service = retrofit.create(API.class);
 
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        final String token = sharedpreferences.getString(Key, "notPresent");
+
         selectSubject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SubjectAddRequest subjectAddRequest = new SubjectAddRequest();
-                subjectAddRequest.setToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsic3RyaWN0TW9kZSI6dHJ1ZSwiZ2V0dGVycyI6e30sIndhc1BvcHVsYXRlZCI6ZmFsc2UsImFjdGl2ZVBhdGhzIjp7InBhdGhzIjp7IlBhc3N3b3JkIjoibW9kaWZ5IiwiRW1haWwiOiJtb2RpZnkiLCJQaG9uZSI6Im1vZGlmeSIsIk5hbWUiOiJtb2RpZnkiLCJQb2ludHMiOiJkZWZhdWx0IiwicmF0aW5nIjoiZGVmYXVsdCIsIlNwZWNpYWxpemF0aW9uIjoiZGVmYXVsdCIsIkJhbmtEZXRhaWxzIjoiZGVmYXVsdCIsImNyZWF0ZWRBdCI6ImRlZmF1bHQiLCJsYXN0TG9naW4iOiJkZWZhdWx0IiwibW9kaWZpZWRBdCI6ImRlZmF1bHQiLCJfaWQiOiJkZWZhdWx0In0sInN0YXRlcyI6eyJpZ25vcmUiOnt9LCJkZWZhdWx0Ijp7IlBvaW50cyI6dHJ1ZSwicmF0aW5nIjp0cnVlLCJTcGVjaWFsaXphdGlvbiI6dHJ1ZSwiQmFua0RldGFpbHMiOnRydWUsImNyZWF0ZWRBdCI6dHJ1ZSwibGFzdExvZ2luIjp0cnVlLCJtb2RpZmllZEF0Ijp0cnVlLCJfaWQiOnRydWV9LCJpbml0Ijp7fSwibW9kaWZ5Ijp7Ik5hbWUiOnRydWUsIlBob25lIjp0cnVlLCJQYXNzd29yZCI6dHJ1ZSwiRW1haWwiOnRydWV9LCJyZXF1aXJlIjp7fX0sInN0YXRlTmFtZXMiOlsicmVxdWlyZSIsIm1vZGlmeSIsImluaXQiLCJkZWZhdWx0IiwiaWdub3JlIl19LCJlbWl0dGVyIjp7ImRvbWFpbiI6bnVsbCwiX2V2ZW50cyI6e30sIl9ldmVudHNDb3VudCI6MiwiX21heExpc3RlbmVycyI6MH19LCJpc05ldyI6dHJ1ZSwiX2RvYyI6eyJQb2ludHMiOjAsInJhdGluZyI6MCwiU3BlY2lhbGl6YXRpb24iOltdLCJCYW5rRGV0YWlscyI6W10sImNyZWF0ZWRBdCI6IjIwMTctMDMtMjVUMTM6MTI6MDguNTY2WiIsImxhc3RMb2dpbiI6IjIwMTctMDMtMjVUMTM6MTI6MDguNTY2WiIsIm1vZGlmaWVkQXQiOiIyMDE3LTAzLTI1VDEzOjEyOjA4LjU2NloiLCJfaWQiOiI1OGQ2NmQ0ZGQ0NDUwNDVlODZlYmVjNzAiLCJOYW1lIjoiUHVjaHUiLCJQaG9uZSI6IjcwNDQwNTk4NzYiLCJQYXNzd29yZCI6IkxhdGhlckAxMjMiLCJFbWFpbCI6IlB1Y2h1QHB1Y2h1LmNvbSJ9LCJpYXQiOjE0OTA0NDc2OTMsImV4cCI6MTQ5NTYzMTY5M30.vjtmBez0kihPLsKht35hdYBatw775x1OCmtBhxilAkQ");
+                subjectAddRequest.setToken(token);
                 subjectAddRequest.setSubjects(subjectList);
 
                 Call<SubjectAddResponse> subjectAddResponseCall = service.addSubject(subjectAddRequest);
@@ -497,6 +541,8 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
                         SubjectAddResponse subjectAddResponse = response.body();
                         Log.d("jhfjksf", " lhdkjahj " + subjectAddResponse.getMessage());
                         Log.d("subkect list:   ", "" + subjectList);
+                        Intent mainIntent = new Intent(SelectSubjectActivity.this, PaymentDetailsActivity.class);
+                        startActivity(mainIntent);
                     }
 
                     @Override
@@ -516,15 +562,6 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
             buttonView.setBackground(drawable);
             buttonView.setTextColor(Color.parseColor("#FFFFFF"));
             subjectList.add(buttonView.getText().toString());
-            for(int i=0; i<subjectList.size(); i++){
-                if(buttonView.getText().toString().equals(subjectList.get(i))){
-
-                    Log.d("Subject", " already existing");
-
-                }else{
-                    subjectList.add(buttonView.getText().toString());
-                }
-            }
 
         }else {
             Drawable drawable = getResources().getDrawable(R.drawable.button_rounded_corners);
@@ -534,11 +571,17 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
                 if(buttonView.getText().toString().equals(subjectList.get(i))){
 
                     subjectList.remove(i);
+                    break;
 
                 }
             }
         }
 
+
+    }
+
+    @Override
+    public void onBackPressed() {
 
     }
 }

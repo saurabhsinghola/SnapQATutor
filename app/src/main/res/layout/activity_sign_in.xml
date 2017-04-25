@@ -10,11 +10,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:orientation="vertical"
         android:background="@color/colorPrimary"
-        android:elevation="4dp">
+        android:elevation="4dp"
+        android:orientation="vertical">
 
-
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/mainlogo"
+            android:layout_margin="60dp"/>
 
     </LinearLayout>
 
@@ -35,38 +40,78 @@
 
 
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_layout_phone"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp">
 
-                <EditText
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginRight="8dp"
+                    android:src="@drawable/smartphone"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Phone"
-                    android:id="@+id/signinphone"
-                    android:padding="8dp"/>
 
-            </android.support.design.widget.TextInputLayout>
+                    >
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_layout_password"
+                    <EditText
+                        android:id="@+id/signinphone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Phone"
+                        android:textSize="16dp"
+                        android:paddingLeft="8dp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp">
 
-                <EditText
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginRight="8dp"
+                    android:src="@drawable/padlock"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Password"
-                    android:id="@+id/signinpassword"
-                    android:padding="8dp"
-                    android:inputType="textPassword" />
+                    >
 
-            </android.support.design.widget.TextInputLayout>
+                    <com.subhrajyoti.passwordview.PasswordView
+                        android:id="@+id/signinpassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Password"
+                        android:textSize="16dp"
+                        app:eyeTint="@color/colorPrimaryText"
+                        app:strikeThrough="true"
+                        android:drawablePadding="8dp"
+                        android:paddingLeft="8dp"
+                        android:textAppearance="@style/TextAppearance.FontPath"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+
 
 
 
@@ -85,7 +130,11 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="0dp"
                 android:text="Log In"
+                android:textSize="16dp"
                 android:id="@+id/signinbutton"
+                style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+                android:background="@color/colorPrimary"
+                android:textColor="#FFFFFF"
                 />
 
 
@@ -93,22 +142,27 @@
 
     </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Forgot Password?"
+        android:gravity="center"
+        android:id="@+id/sign_in_forgot_password"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:gravity="bottom|center"
-        android:padding="16dp"
-        >
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <TextView
+            android:id="@+id/signUpText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="New User? Sign Up!"
             android:layout_gravity="bottom"
-            android:id="@+id/signUpText"
             android:gravity="center"
-            />
+            android:text="New User? Sign Up!" />
 
     </LinearLayout>
 
