@@ -1,5 +1,6 @@
 package in.co.snapqa.clientapp0903;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,9 +28,10 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class PaymentDetailsActivity extends AppCompatActivity {
 
     EditText bankAccountNumber, ifscCode, panNumber;
-    Button submit;
+    Button submit, skip;
     String acNo, ifsc, pan;
     PaymentDetailsRequest paymentDetailsRequest;
+    ProgressDialog progressDialog;
 
 
     String token;
@@ -58,6 +60,7 @@ public class PaymentDetailsActivity extends AppCompatActivity {
         panNumber = (EditText) findViewById(R.id.payment_details_pan_number);
 
         submit = (Button) findViewById(R.id.payment_details_submit_button);
+        skip = (Button) findViewById(R.id.payment_details_skip_button);
 
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
@@ -75,13 +78,20 @@ public class PaymentDetailsActivity extends AppCompatActivity {
         final API service = retrofit.create(API.class);
 
 
-
+        skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PaymentDetailsActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                progressDialog = ProgressDialog.show(PaymentDetailsActivity.this, "Just a sec!", "Saving Your Details", true);
                 paymentDetailsRequest = new PaymentDetailsRequest(""," ", " ", " ");
                 paymentDetailsRequest.setToken(token);
                 paymentDetailsRequest.setPanNumber(panNumber.getText().toString().toUpperCase());
@@ -103,6 +113,7 @@ public class PaymentDetailsActivity extends AppCompatActivity {
                         if(res.equals("Successful !! Bank Details Added !!")){
 
                             Intent intent = new Intent(PaymentDetailsActivity.this, MainActivity.class);
+                            progressDialog.dismiss();
                             startActivity(intent);
 
                         }
@@ -111,6 +122,7 @@ public class PaymentDetailsActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<PaymentDetailsResponse> call, Throwable t) {
                         Log.d("Payment details error", "   " + t.getMessage());
+                        progressDialog.dismiss();
                     }
                 });
 
@@ -121,6 +133,14 @@ public class PaymentDetailsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        final String subjects = sharedpreferences.getString("Bank", "notPresent");
+        Log.d("chjsdgs:  "," + " + subjects);
+        if(subjects.equals("Bank")){
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.remove("Bank");
+            editor.commit();
+            super.onBackPressed();
+        }
     }
 }

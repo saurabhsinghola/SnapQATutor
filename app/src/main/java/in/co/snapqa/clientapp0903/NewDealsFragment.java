@@ -107,9 +107,12 @@ public class NewDealsFragment extends Fragment {
                     layoutManager = new LinearLayoutManager(getActivity());
                     newDealsRecyclerView.setLayoutManager(layoutManager);
                     newDealsRecyclerView.setAdapter(newDealsRecyclerViewAdapter);
-                }else if(response.body().getMessage().equals("Verification Error")){
+                }else if(response.body().getMessage().equals("phoneNotVerified")){
                     Intent verifyOTP = new Intent(getActivity(), VerifyOTPActivity.class);
                     startActivity(verifyOTP);
+                }else if(response.body().getMessage().equals("subjectsNotAdded")){
+                    Intent subjectIntent = new Intent(getActivity(), SelectSubjectActivity.class);
+                    startActivity(subjectIntent);
                 }
             }
 

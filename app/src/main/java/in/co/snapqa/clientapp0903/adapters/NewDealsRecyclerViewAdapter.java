@@ -88,7 +88,7 @@ public class NewDealsRecyclerViewAdapter extends RecyclerView.Adapter<NewDealsRe
 
         Log.d("jkhdjksahda  ","" + newDealResponsess.getResponses().get(position).getTimeTo() );
 
-        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.sss'Z'");
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         try {
             date = formatter.parse(String.valueOf(newDealResponsess.getResponses().get(position).getTimeTo()));
 
@@ -98,10 +98,13 @@ public class NewDealsRecyclerViewAdapter extends RecyclerView.Adapter<NewDealsRe
 
         cal = Calendar.getInstance();
         cal.setTime(date);
-        cal.add(Calendar.HOUR, -5);
-        cal.add(Calendar.MINUTE, -30);
+        int month = cal.get(Calendar.MONTH) + 1;
 
 
+
+
+
+        Log.d("hdfbsdhbfs :", "" + cal.get(Calendar.HOUR));
 
         if(Calendar.HOUR<10){
 
@@ -120,39 +123,46 @@ public class NewDealsRecyclerViewAdapter extends RecyclerView.Adapter<NewDealsRe
 
         if(Calendar.DATE<10){
             if(Calendar.MONTH < 10){
-                testDate = "0" + cal.get(Calendar.DATE) + "/" + "0" + cal.get(Calendar.MONTH) + "/" + cal.get(Calendar.YEAR);
+                testDate = "0" + cal.get(Calendar.DATE) + "/" + "0" + month + "/" + cal.get(Calendar.YEAR);
             }else {
-                 testDate = "0" + cal.get(Calendar.DATE) + "/" + cal.get(Calendar.MONTH) + "/" + cal.get(Calendar.YEAR);
+                 testDate = "0" + cal.get(Calendar.DATE) + "/" + month + "/" + cal.get(Calendar.YEAR);
             }
         }else {
             if(Calendar.MONTH < 10){
-                 testDate = cal.get(Calendar.DATE) + "/" + "0" + cal.get(Calendar.MONTH) + "/" + cal.get(Calendar.YEAR);
+                 testDate = cal.get(Calendar.DATE) + "/" + "0" + month + "/" + cal.get(Calendar.YEAR);
             }else {
-                 testDate = cal.get(Calendar.DATE) + "/" + cal.get(Calendar.MONTH) + "/" + cal.get(Calendar.YEAR);
+                 testDate = cal.get(Calendar.DATE) + "/" + month + "/" + cal.get(Calendar.YEAR);
             }
         }
 
-        String testDate = cal.get(Calendar.DATE) + "/" + cal.get(Calendar.MONTH) + "/" + cal.get(Calendar.YEAR);
+        String testDate = cal.get(Calendar.DATE) + "/" + month + "/" + cal.get(Calendar.YEAR);
         holder.date.setText(testDate);
 
-        if(ty.equals("Home Work") || ty.equals("HomeWork")){
+        if(ty.equals("Deadline Session") || ty.equals("HomeWork")){
             holder.leftIV.setBackgroundResource(R.drawable.hourglass);
             holder.type.setText("Deadline Session");
             holder.leftTV.setText(testDate+ ", " + ftime);
             holder.rightIV.setBackgroundResource(R.drawable.rupee);
-            holder.rightTV.setText(Integer.toString(newDealResponsess.getResponses().get(position).getPointsOffered()));
+            holder.rightTV.setText(Integer.toString(newDealResponsess.getResponses().get(position).getAmount()));
             holder.type.setBackgroundResource(R.color.colorTurquoise);
         }else{
             holder.leftIV.setBackgroundResource(R.drawable.hourglass);
             holder.type.setText("Live Session");
             holder.leftTV.setText(ftime);
             holder.rightIV.setBackgroundResource(R.drawable.hourglass);
-            holder.rightTV.setText(Integer.toString(newDealResponsess.getResponses().get(position).getPointsOffered()));
+            holder.rightTV.setText(ftime);
         }
 
         holder.linearLayout.setVisibility(LinearLayout.GONE);
 
         final LinearLayout layout = holder.linearLayout;
+
+        if(newDealResponsess.getResponses().get(position).getMaterialComment() != null) {
+            holder.material.setText(newDealResponsess.getResponses().get(position).getMaterialComment());
+        }
+        if(newDealResponsess.getResponses().get(position).getBookName() != null){
+            holder.bookName.setText(newDealResponsess.getResponses().get(position).getBookName());
+        }
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -249,7 +259,6 @@ public class NewDealsRecyclerViewAdapter extends RecyclerView.Adapter<NewDealsRe
             rightTV=(TextView) itemView.findViewById(R.id.new_deal_fragment_rv_right_tv);
             bookName = (TextView) itemView.findViewById(R.id.new_deal_fragment_rv_book_name);
             material = (TextView) itemView.findViewById(R.id.new_deal_fragment_rv_material);
-            comments = (TextView) itemView.findViewById(R.id.new_deal_fragment_rv_comments);
 
             leftIV = (ImageView) itemView.findViewById(R.id.new_deal_fragment_rv_left_iv);
             rightIV = (ImageView) itemView.findViewById(R.id.new_deal_fragment_rv_right_iv);
@@ -266,7 +275,7 @@ public class NewDealsRecyclerViewAdapter extends RecyclerView.Adapter<NewDealsRe
             rightTV.setTypeface(font1, Typeface.BOLD);
             bookName.setTypeface(font1);
             material.setTypeface(font1);
-            comments.setTypeface(font1);
+
 
 
 

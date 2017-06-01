@@ -49,7 +49,11 @@ public class SignInActivity extends AppCompatActivity {
 
     Drawable drawable;
 
+    SharedPreferences.Editor editor;
+
     TextView signUpText, forgotPassword;
+
+    public static final String Phone = "phone";
 
     ProgressDialog progressDialog;
 
@@ -192,7 +196,7 @@ public class SignInActivity extends AppCompatActivity {
                             SharedPreferences.Editor editor = sharedpreferences.edit();
 
                             editor.putString(Key, tok);
-                            editor.putString("Phone", phone.getText().toString());
+                            editor.putString(Phone, phone.getText().toString());
                             editor.commit();
 
                             //OTP Verification

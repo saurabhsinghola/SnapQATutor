@@ -3,6 +3,7 @@ package in.co.snapqa.clientapp0903.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
@@ -73,9 +74,9 @@ public class ScheduledDeadlineSessionRecyclerViewAdapter extends RecyclerView.Ad
         String ty = newDealResponsess.getResponses().get(position).getDealType();
         Log.d("type ki value", "  " + ty);
 
-        DateFormat formatter = new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy");
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.sss'Z'");
         try {
-            date = (Date)formatter.parse(String.valueOf(newDealResponsess.getResponses().get(position).getDealDate()));
+            date = formatter.parse(String.valueOf(newDealResponsess.getResponses().get(position).getTimeTo()));
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -118,24 +119,32 @@ public class ScheduledDeadlineSessionRecyclerViewAdapter extends RecyclerView.Ad
 
         holder.date.setText(testDate);
 
-        if(ty.equals("Home Work") || ty.equals("HomeWork")){
+        if(ty.equals("Deadline Session") || ty.equals("HomeWork")){
             holder.leftIV.setBackgroundResource(R.drawable.hourglass);
             holder.leftTV.setText(ftime);
             holder.rightIV.setBackgroundResource(R.drawable.rupee);
-            holder.rightTV.setText(Integer.toString(newDealResponsess.getResponses().get(position).getPointsOffered()));
+            holder.rightTV.setText(Integer.toString(newDealResponsess.getResponses().get(position).getAmount()));
             holder.type.setBackgroundResource(R.color.colorTurquoise);
             holder.type.setText("Deadline Session");
         }else{
             holder.leftIV.setBackgroundResource(R.drawable.hourglass);
             holder.leftTV.setText(ftime);
             holder.rightIV.setBackgroundResource(R.drawable.hourglass);
-            holder.rightTV.setText(Integer.toString(newDealResponsess.getResponses().get(position).getPointsOffered()));
+            holder.rightTV.setText(Integer.parseInt(newDealResponsess.getResponses().get(position).getTimeTo()));
             holder.type.setText("Live Session");
         }
 
         holder.linearLayout.setVisibility(LinearLayout.GONE);
 
         final LinearLayout layout = holder.linearLayout;
+
+
+        if(newDealResponsess.getResponses().get(position).getMaterialComment() != null) {
+            holder.material.setText(newDealResponsess.getResponses().get(position).getMaterialComment());
+        }
+        if(newDealResponsess.getResponses().get(position).getBookName() != null){
+            holder.bookName.setText(newDealResponsess.getResponses().get(position).getBookName());
+        }
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -205,6 +214,10 @@ public class ScheduledDeadlineSessionRecyclerViewAdapter extends RecyclerView.Ad
         ImageView leftIV, rightIV;
         Button accept, reject;
 
+        Typeface font1 = Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/opensanslight.ttf");
+        Typeface font2 = Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/opensansregular.ttf");
+        Typeface font3 = Typeface.createFromAsset(itemView.getContext().getAssets(), "fonts/opensanssemibold.ttf");
+
         public MyViewHolder(final View itemView) {
             super(itemView);
 
@@ -219,7 +232,6 @@ public class ScheduledDeadlineSessionRecyclerViewAdapter extends RecyclerView.Ad
             rightTV=(TextView) itemView.findViewById(R.id.new_deal_fragment_rv_right_tv);
             bookName = (TextView) itemView.findViewById(R.id.new_deal_fragment_rv_book_name);
             material = (TextView) itemView.findViewById(R.id.new_deal_fragment_rv_material);
-            comments = (TextView) itemView.findViewById(R.id.new_deal_fragment_rv_comments);
 
             leftIV = (ImageView) itemView.findViewById(R.id.new_deal_fragment_rv_left_iv);
             rightIV = (ImageView) itemView.findViewById(R.id.new_deal_fragment_rv_right_iv);
@@ -229,6 +241,16 @@ public class ScheduledDeadlineSessionRecyclerViewAdapter extends RecyclerView.Ad
 
             acceptReject = (LinearLayout) itemView.findViewById(R.id.new_deal_fragment_rv_accept_reject_layout);
             acceptReject.setVisibility(LinearLayout.GONE);
+
+            accept.setTypeface(font2);
+            reject.setTypeface(font2, Typeface.BOLD);
+            subject.setTypeface(font3);
+            type.setTypeface(font1);
+            date.setTypeface(font1);
+            leftTV.setTypeface(font1, Typeface.BOLD);
+            rightTV.setTypeface(font1, Typeface.BOLD);
+            bookName.setTypeface(font1);
+            material.setTypeface(font1);
 
 
         }

@@ -31,6 +31,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="8dp"
                 android:hint="Bank Account Number"
+                android:maxLines="1"
                 android:inputType="number"
                 android:textSize="16dp"/>
 
@@ -62,6 +63,7 @@
                 android:layout_height="wrap_content"
                 android:hint="IFSC Code"
                 android:id="@+id/payment_details_ifsc_code"
+                android:maxLines="1"
                 android:paddingLeft="8dp"
                 android:textSize="16dp"/>
 
@@ -92,6 +94,7 @@
                 android:layout_height="wrap_content"
                 android:hint="PAN Number"
                 android:id="@+id/payment_details_pan_number"
+                android:maxLines="1"
                 android:paddingLeft="8dp"
                 android:textSize="16dp"/>
 
@@ -100,15 +103,37 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/payment_details_submit_button"
-        style="@style/Widget.AppCompat.Button.Colored"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:background="@color/colorPrimary"
-        android:text="Submit"
-        android:textColor="#FFFFFF"
-        android:textSize="16dp" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/payment_details_skip_button"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:background="@color/colorPrimary"
+            android:text="Skip"
+            android:textColor="#FFFFFF"
+            android:textSize="16dp"
+            android:layout_weight="1"
+            android:layout_marginRight="8dp"/>
+
+        <Button
+            android:id="@+id/payment_details_submit_button"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:background="@color/colorPrimary"
+            android:text="Submit"
+            android:textColor="#FFFFFF"
+            android:textSize="16dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="8dp"/>
+
+    </LinearLayout>
 
 </LinearLayout>

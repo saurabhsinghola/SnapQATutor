@@ -19,7 +19,7 @@ public class NewDealFragmentResponse {
 
     @SerializedName("pointsOffered")
     @Expose
-    int pointsOffered;
+    int amount;
 
     @SerializedName("subjectName")
     @Expose
@@ -39,7 +39,7 @@ public class NewDealFragmentResponse {
 
     @SerializedName("__v")
     @Expose
-    int  __v;
+    int __v;
 
     @SerializedName("bookedStatus")
     @Expose
@@ -74,9 +74,17 @@ public class NewDealFragmentResponse {
     @Expose
     String timeFrom;
 
-    public NewDealFragmentResponse(String _id, int pointsOffered, String subjectName, String clientName, Date dealDate, String adminName, int __v, List bookedStatus, Boolean isActive, List feedback, List ratingArray, Date createdAt, String dealType, String timeTo, String timeFrom) {
+    @SerializedName("bookName")
+    @Expose
+    String bookName;
+
+    @SerializedName("materialComment")
+    @Expose
+    String materialComment;
+
+    public NewDealFragmentResponse(String _id, int amount, String subjectName, String clientName, Date dealDate, String adminName, int __v, List bookedStatus, Boolean isActive, List feedback, List ratingArray, Date createdAt, String dealType, String timeTo, String timeFrom, String bookName, String materialComment) {
         this._id = _id;
-        this.pointsOffered = pointsOffered;
+        this.amount = amount;
         this.subjectName = subjectName;
         this.clientName = clientName;
         this.dealDate = dealDate;
@@ -90,6 +98,8 @@ public class NewDealFragmentResponse {
         this.dealType = dealType;
         this.timeTo = timeTo;
         this.timeFrom = timeFrom;
+        this.bookName = bookName;
+        this.materialComment = materialComment;
     }
 
     public String get_id() {
@@ -100,12 +110,12 @@ public class NewDealFragmentResponse {
         this._id = _id;
     }
 
-    public int getPointsOffered() {
-        return pointsOffered;
+    public int getAmount() {
+        return amount;
     }
 
-    public void setPointsOffered(int pointsOffered) {
-        this.pointsOffered = pointsOffered;
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     public String getSubjectName() {
@@ -210,5 +220,21 @@ public class NewDealFragmentResponse {
 
     public void setTimeFrom(String timeFrom) {
         this.timeFrom = timeFrom;
+    }
+
+    public String getBookName() {
+        return bookName;
+    }
+
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
+    }
+
+    public String getMaterialComment() {
+        return materialComment;
+    }
+
+    public void setMaterialComment(String materialComment) {
+        this.materialComment = materialComment;
     }
 }

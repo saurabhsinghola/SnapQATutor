@@ -37,11 +37,13 @@ public class TutorProfile extends AppCompatActivity {
     SharedPreferences sharedpreferences;
     public static final String MyPREFERENCES = "MyPrefs" ;
     public static final String Key = "key";
-    public static final String Subjects = "subjects";
+    public static final String Subjects = "Subjects";
+    public static final String Bank = "Bank";
     String rating, name, specializationString = "";
     ArrayList<String> specs;
     FloatingActionButton paymentEditFAB, specializationEditFAB;
     Typeface typeface;
+    SharedPreferences.Editor editor;
 
     CollapsingToolbarLayout collapsingToolbarLayout;
 
@@ -114,6 +116,9 @@ public class TutorProfile extends AppCompatActivity {
         specializationEditFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                editor = sharedpreferences.edit();
+                editor.putString(Subjects, "Subjects");
+                editor.commit();
                 Intent intent = new Intent(TutorProfile.this, SelectSubjectActivity.class);
                 startActivity(intent);
             }
@@ -175,6 +180,9 @@ public class TutorProfile extends AppCompatActivity {
         paymentEditFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                editor = sharedpreferences.edit();
+                editor.putString(Bank, "Bank");
+                editor.commit();
                 Intent paymentEditIntent = new Intent(TutorProfile.this, PaymentDetailsActivity.class);
                 startActivity(paymentEditIntent);
             }

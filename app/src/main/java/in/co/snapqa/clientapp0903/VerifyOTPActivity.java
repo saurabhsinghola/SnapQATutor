@@ -1,5 +1,6 @@
 package in.co.snapqa.clientapp0903;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -47,6 +48,7 @@ public class VerifyOTPActivity extends AppCompatActivity implements Verification
     TextView didntReceiveOTP;
 
     SharedPreferences sharedpreferences;
+    ProgressDialog progressDialog;
 
     public static final String MyPREFERENCES = "MyPrefs" ;
     public static final String Phone = "phone";
@@ -137,6 +139,7 @@ public class VerifyOTPActivity extends AppCompatActivity implements Verification
         verifyOTP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog = ProgressDialog.show(VerifyOTPActivity.this, "Just a sec!", "Logging you in", true);
                 verification.verify(enterOTP.getText().toString());
             }
         });
@@ -176,15 +179,17 @@ public class VerifyOTPActivity extends AppCompatActivity implements Verification
                 if(message.equals("Successful")){
                     Toast.makeText(getApplicationContext(), "Successfully Verified", Toast.LENGTH_LONG).show();
                     Intent selectSubject = new Intent(VerifyOTPActivity.this, SelectSubjectActivity.class);
+                    progressDialog.dismiss();
                     startActivity(selectSubject);
 
                 }
                 Log.d("message  csdkhds", "" + message);
+                Log.d("phonre :  ", " "+ phone);
             }
 
             @Override
             public void onFailure(Call<OTPResponse> call, Throwable t) {
-
+                progressDialog.dismiss();
             }
         });
 
@@ -195,6 +200,7 @@ public class VerifyOTPActivity extends AppCompatActivity implements Verification
     public void onVerificationFailed(Exception paramException) {
         Log.e(TAG, "Verification failed: " + paramException.getMessage());
         Log.d("sdfjkhsdfh ", "" + phone);
+        progressDialog.dismiss();
     }
 
     @Override

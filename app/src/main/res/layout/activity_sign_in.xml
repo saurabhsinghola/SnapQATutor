@@ -39,21 +39,20 @@
             android:orientation="vertical">
 
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
                 android:layout_marginLeft="32dp"
-                android:layout_marginRight="32dp">
+                android:layout_marginRight="32dp"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginBottom="8dp"
                     android:layout_gravity="bottom"
+                    android:layout_marginBottom="8dp"
                     android:layout_marginRight="8dp"
-                    android:src="@drawable/smartphone"/>
+                    android:src="@drawable/smartphone" />
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/input_layout_phone"
@@ -66,9 +65,12 @@
                         android:id="@+id/signinphone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:maxLines="1"
                         android:hint="Phone"
+                        android:paddingLeft="8dp"
                         android:textSize="16dp"
-                        android:paddingLeft="8dp" />
+                        android:inputType="number"
+                        android:maxLength="10"/>
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -77,42 +79,39 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
                 android:layout_marginLeft="32dp"
-                android:layout_marginRight="32dp">
+                android:layout_marginRight="32dp"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginBottom="8dp"
                     android:layout_gravity="bottom"
+                    android:layout_marginBottom="8dp"
                     android:layout_marginRight="8dp"
-                    android:src="@drawable/padlock"/>
+                    android:src="@drawable/padlock" />
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/input_layout_password"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    >
+                    android:layout_height="wrap_content">
 
                     <com.subhrajyoti.passwordview.PasswordView
                         android:id="@+id/signinpassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:drawablePadding="8dp"
                         android:hint="Password"
+                        android:paddingLeft="8dp"
+                        android:maxLines="1"
+                        android:textAppearance="@style/TextAppearance.FontPath"
                         android:textSize="16dp"
                         app:eyeTint="@color/colorPrimaryText"
-                        app:strikeThrough="true"
-                        android:drawablePadding="8dp"
-                        android:paddingLeft="8dp"
-                        android:textAppearance="@style/TextAppearance.FontPath"/>
+                        app:strikeThrough="true" />
 
                 </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
-
-
-
 
 
         </LinearLayout>
@@ -120,22 +119,21 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
 
             <Button
+                android:id="@+id/signinbutton"
+                style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="0dp"
-                android:text="Log In"
-                android:textSize="16dp"
-                android:id="@+id/signinbutton"
-                style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
                 android:background="@color/colorPrimary"
+                android:text="Log In"
                 android:textColor="#FFFFFF"
-                />
+                android:textSize="16dp" />
 
 
         </LinearLayout>

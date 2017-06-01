@@ -6,11 +6,9 @@ package in.co.snapqa.clientapp0903.models;
 
 public class ChangePasswordRequest {
     String password;
-    String changePassword;
 
-    public ChangePasswordRequest(String password, String changePassword) {
+    public ChangePasswordRequest(String password) {
         this.password = password;
-        this.changePassword = changePassword;
     }
 
     public String getPassword() {
@@ -19,13 +17,5 @@ public class ChangePasswordRequest {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getChangePassword() {
-        return changePassword;
-    }
-
-    public void setChangePassword(String changePassword) {
-        this.changePassword = changePassword;
     }
 }

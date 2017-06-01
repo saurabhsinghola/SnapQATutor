@@ -6,17 +6,17 @@ package in.co.snapqa.clientapp0903.models;
 
 public class SendOTP {
 
-    String Phone;
+    String phone;
 
     public SendOTP(String phone) {
-        Phone = phone;
+        this.phone = phone;
     }
 
     public String getPhone() {
-        return Phone;
+        return phone;
     }
 
     public void setPhone(String phone) {
-        Phone = phone;
+        this.phone = phone;
     }
 }

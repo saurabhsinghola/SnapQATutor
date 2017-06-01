@@ -1,5 +1,6 @@
 package in.co.snapqa.clientapp0903;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -50,6 +51,8 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
     ToggleButton finance, accountancy, engineeringEconomics, probabilityEconomics, statisticsEconomics, operationResearch;
     ToggleButton roboticsMisc, philosophy, humanities, essayWriting, alternativeEnergy, powderMetaallurgy, geology, geophysics, operationResearchMisc, engineeringCosttAnalysis;
     ScrollView scrollView;
+
+    ProgressDialog progressDialog;
 
     Button selectSubject;
 
@@ -529,6 +532,7 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
         selectSubject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog = ProgressDialog.show(SelectSubjectActivity.this, "Just a sec!", "Saving Your Subjects", true);
                 SubjectAddRequest subjectAddRequest = new SubjectAddRequest();
                 subjectAddRequest.setToken(token);
                 subjectAddRequest.setSubjects(subjectList);
@@ -541,13 +545,24 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
                         SubjectAddResponse subjectAddResponse = response.body();
                         Log.d("jhfjksf", " lhdkjahj " + subjectAddResponse.getMessage());
                         Log.d("subkect list:   ", "" + subjectList);
-                        Intent mainIntent = new Intent(SelectSubjectActivity.this, PaymentDetailsActivity.class);
-                        startActivity(mainIntent);
+                        final String subjects = sharedpreferences.getString("Subjects", "notPresent");
+                        if(subjects.equals("Subjects")){
+                            SharedPreferences.Editor editor = sharedpreferences.edit();
+                            editor.remove("Subjects");
+                            editor.commit();
+                            Intent intent = new Intent(SelectSubjectActivity.this, TutorProfile.class);
+                            progressDialog.dismiss();
+                            startActivity(intent);
+                        }else {
+                            Intent mainIntent = new Intent(SelectSubjectActivity.this, PaymentDetailsActivity.class);
+                            progressDialog.dismiss();
+                            startActivity(mainIntent);
+                        }
                     }
 
                     @Override
                     public void onFailure(Call<SubjectAddResponse> call, Throwable t) {
-
+                        progressDialog.dismiss();
                     }
                 });
             }
@@ -582,6 +597,16 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
 
     @Override
     public void onBackPressed() {
+
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        final String subjects = sharedpreferences.getString("Subjects", "notPresent");
+        Log.d("chjsdgs:  "," + " + subjects);
+        if(subjects.equals("Subjects")){
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.remove("Subjects");
+            editor.commit();
+            super.onBackPressed();
+        }
 
     }
 }

@@ -32,6 +32,7 @@
 
             <EditText
                 android:id="@+id/signupphone"
+                android:maxLines="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Phone"
@@ -68,6 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
+                android:maxLines="1"
                 app:eyeTint="@color/colorPrimaryText"
                 app:strikeThrough="true"
                 android:paddingLeft="8dp"
@@ -101,6 +103,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Name"
                 android:id="@+id/signupname"
+                android:maxLines="1"
                 android:padding="10dp"
                 android:paddingLeft="8dp"
                 android:textSize="16dp"/>
@@ -132,6 +135,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Whatsapp Number"
                 android:inputType="textEmailAddress"
+                android:maxLines="1"
                 android:padding="10dp"
                 android:paddingLeft="8dp"
                 android:textSize="16dp"/>
@@ -163,6 +167,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
+                android:maxLines="1"
                 android:padding="10dp"
                 android:paddingLeft="8dp"
                 android:textSize="16dp"/>

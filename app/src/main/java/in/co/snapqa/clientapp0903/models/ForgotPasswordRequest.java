@@ -6,27 +6,27 @@ package in.co.snapqa.clientapp0903.models;
 
 public class ForgotPasswordRequest {
 
-    String Phone;
-    String Email;
+    String phone;
+    String email;
 
     public ForgotPasswordRequest(String phone, String email) {
-        Phone = phone;
-        Email = email;
+        this.phone = phone;
+        this.email = email;
     }
 
     public String getPhone() {
-        return Phone;
+        return phone;
     }
 
     public void setPhone(String phone) {
-        Phone = phone;
+        this.phone = phone;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 }
