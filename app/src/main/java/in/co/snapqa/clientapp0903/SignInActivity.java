@@ -203,8 +203,11 @@ public class SignInActivity extends AppCompatActivity {
                             Intent mainActivity = new Intent(SignInActivity.this, MainActivity.class);
                             startActivity(mainActivity);
 
-                        } else if(tokenResponse.message.equals("Unsuccessful")){
-                            Toast.makeText(SignInActivity.this, "Incorrect credentials", Toast.LENGTH_LONG).show();
+                        } else if(tokenResponse.message.equals("User Not Registered")){
+                            Toast.makeText(SignInActivity.this, "Incorrect Phone Number", Toast.LENGTH_LONG).show();
+                            Log.d("status code: ", "" + statusCode);
+                        }else if(tokenResponse.message.equals("Password Incorrect")){
+                            Toast.makeText(SignInActivity.this, "Incorrect Password", Toast.LENGTH_LONG).show();
                             Log.d("status code: ", "" + statusCode);
                         }else {
                             Log.d("else: ", "" + response.body().getMessage());
