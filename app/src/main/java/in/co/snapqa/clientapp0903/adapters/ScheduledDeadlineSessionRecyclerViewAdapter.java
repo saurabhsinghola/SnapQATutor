@@ -69,12 +69,12 @@ public class ScheduledDeadlineSessionRecyclerViewAdapter extends RecyclerView.Ad
 
     @Override
     public void onBindViewHolder(ScheduledDeadlineSessionRecyclerViewAdapter.MyViewHolder holder, int position) {
-        holder.subject.setText(newDealResponsess.getResponses().get(position).getSubjectName().toUpperCase());
+        holder.subject.setText(newDealResponsess.getResponses().get(position).getSubjectName());
 
         String ty = newDealResponsess.getResponses().get(position).getDealType();
         Log.d("type ki value", "  " + ty);
 
-        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.sss'Z'");
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         try {
             date = formatter.parse(String.valueOf(newDealResponsess.getResponses().get(position).getTimeTo()));
 
@@ -84,15 +84,14 @@ public class ScheduledDeadlineSessionRecyclerViewAdapter extends RecyclerView.Ad
 
         cal = Calendar.getInstance();
         cal.setTime(date);
-        cal.add(Calendar.HOUR, -5);
-        cal.add(Calendar.MINUTE, -30);
+        int month = cal.get(Calendar.MONTH) + 1;
 
         if(Calendar.HOUR<10){
 
             if(Calendar.MINUTE<10){
                 ftime = "0" +cal.get(Calendar.HOUR) + ":" + "0"+ cal.get(Calendar.MINUTE);
             }else {
-                ftime = "0" + cal.get(Calendar.HOUR) + ":" + cal.get(Calendar.MINUTE);
+                ftime = "0" +cal.get(Calendar.HOUR) + ":" + cal.get(Calendar.MINUTE);
             }
         }else {
             if(Calendar.MINUTE<10){
@@ -104,36 +103,36 @@ public class ScheduledDeadlineSessionRecyclerViewAdapter extends RecyclerView.Ad
 
         if(Calendar.DATE<10){
             if(Calendar.MONTH < 10){
-                testDate = "0" + cal.get(Calendar.DATE) + "/" + "0" + cal.get(Calendar.MONTH) + "/" + cal.get(Calendar.YEAR);
+                testDate = "0" + cal.get(Calendar.DATE) + "/" + "0" + month + "/" + cal.get(Calendar.YEAR);
             }else {
-                 testDate = "0" + cal.get(Calendar.DATE) + "/" + cal.get(Calendar.MONTH) + "/" + cal.get(Calendar.YEAR);
+                testDate = "0" + cal.get(Calendar.DATE) + "/" + month + "/" + cal.get(Calendar.YEAR);
             }
         }else {
             if(Calendar.MONTH < 10){
-                 testDate = cal.get(Calendar.DATE) + "/" + "0" + cal.get(Calendar.MONTH) + "/" + cal.get(Calendar.YEAR);
+                testDate = cal.get(Calendar.DATE) + "/" + "0" + month + "/" + cal.get(Calendar.YEAR);
             }else {
-                 testDate = cal.get(Calendar.DATE) + "/" + cal.get(Calendar.MONTH) + "/" + cal.get(Calendar.YEAR);
+                testDate = cal.get(Calendar.DATE) + "/" + month + "/" + cal.get(Calendar.YEAR);
             }
         }
 
 
+        String testDate = cal.get(Calendar.DATE) + "/" + month + "/" + cal.get(Calendar.YEAR);
         holder.date.setText(testDate);
 
         if(ty.equals("Deadline Session") || ty.equals("HomeWork")){
             holder.leftIV.setBackgroundResource(R.drawable.hourglass);
-            holder.leftTV.setText(ftime);
+            holder.type.setText("Deadline Session");
+            holder.leftTV.setText(testDate+ ", " + ftime);
             holder.rightIV.setBackgroundResource(R.drawable.rupee);
             holder.rightTV.setText(Integer.toString(newDealResponsess.getResponses().get(position).getAmount()));
             holder.type.setBackgroundResource(R.color.colorTurquoise);
-            holder.type.setText("Deadline Session");
         }else{
             holder.leftIV.setBackgroundResource(R.drawable.hourglass);
+            holder.type.setText("Live Session");
             holder.leftTV.setText(ftime);
             holder.rightIV.setBackgroundResource(R.drawable.hourglass);
-            holder.rightTV.setText(Integer.parseInt(newDealResponsess.getResponses().get(position).getTimeTo()));
-            holder.type.setText("Live Session");
+            holder.rightTV.setText(ftime);
         }
-
         holder.linearLayout.setVisibility(LinearLayout.GONE);
 
         final LinearLayout layout = holder.linearLayout;

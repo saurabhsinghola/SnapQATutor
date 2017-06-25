@@ -63,7 +63,7 @@ public interface API {
     @POST("users/forgotPassword")
     Call<ForgotPasswordResponse> forgotPassword(@Body ForgotPasswordRequest forgotPasswordRequest);
 
-    @POST("users/changePassword")
+    @POST("users/resetPassword")
     Call<ChangePasswordResponse> changePassword(@Body ChangePasswordRequest changePasswordRequest);
 
     @POST("users/otpVerified")
