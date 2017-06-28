@@ -2,21 +2,16 @@ package in.co.snapqa.clientapp0903;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.io.IOException;
-
 import in.co.snapqa.clientapp0903.interfaces.API;
 import in.co.snapqa.clientapp0903.models.ForgotPasswordRequest;
 import in.co.snapqa.clientapp0903.models.ForgotPasswordResponse;
-import me.anwarshahriar.calligrapher.Calligrapher;
-import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -29,10 +24,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
     Button submit;
     EditText phone, email;
-    SharedPreferences sharedpreferences;
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    public static final String Phone = "phone";
-    SharedPreferences.Editor editor;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -52,7 +43,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
         submit = (Button) findViewById(R.id.forgot_password_button);
         phone = (EditText) findViewById(R.id.forgto_password_phone);
-        email = (EditText) findViewById(R.id.forgto_password_email);
 
         getSupportActionBar().setTitle("Forgot Password?");
 
@@ -77,12 +67,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ForgotPasswordResponse> call, Response<ForgotPasswordResponse> response) {
                         Log.d("response forpass", "   " + response.body().getMessage());
-                        if(response.body().getMessage().equals("User Found by Phone Number")){
-                            sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                            SharedPreferences.Editor editor = sharedpreferences.edit();
-
-                            editor.putString(Phone, phone.getText().toString());
-                            editor.commit();
+                        if(response.body().getMessage().equals("Successful")){
                             Intent intent = new Intent(ForgotPasswordActivity.this, ChangePasswordActivity.class);
                             startActivity(intent);
                         }
