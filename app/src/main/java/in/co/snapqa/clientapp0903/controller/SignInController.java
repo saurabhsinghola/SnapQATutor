@@ -13,26 +13,18 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Created by ${Rinkesh} on 27/06/17.
- */
-
 public class SignInController {
     private final ApiControllerListener apiControllerListener;
-    private final String phoneNumber;
-    private final String pass;
     private SignInActivity mContext;
 
     public SignInController(SignInActivity context,
-            ApiControllerListener apiControllerListener, String phoneNumber,
-            String pass) {
+            ApiControllerListener apiControllerListener) {
         mContext = context;
         this.apiControllerListener = apiControllerListener;
-        this.phoneNumber = phoneNumber;
-        this.pass = pass;
+
     }
 
-    public void callSignInApi() {
+    public void callSignInApi(final String phoneNumber, final String pass) {
         TokenRequest tokenRequest = new TokenRequest();
         tokenRequest.setPhone(phoneNumber);
         tokenRequest.setPassword(pass);

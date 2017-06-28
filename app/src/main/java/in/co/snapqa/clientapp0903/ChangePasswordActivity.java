@@ -55,7 +55,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
         final API service = retrofit.create(API.class);
 
-        final ChangePasswordRequest changePasswordRequest = new ChangePasswordRequest("");
+        final ChangePasswordRequest changePasswordRequest = new ChangePasswordRequest("","");
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override

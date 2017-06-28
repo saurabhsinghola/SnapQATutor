@@ -96,7 +96,7 @@ public class SignInActivity extends BaseActivity implements ApiControllerListene
             Toast.makeText(this, "Invalid Credential", Toast.LENGTH_LONG).show();
             return;
         }
-        new SignInController(this, this, phoneNumber, pass).callSignInApi();
+        new SignInController(this, this).callSignInApi(phoneNumber, pass);
     }
 
     @Override
