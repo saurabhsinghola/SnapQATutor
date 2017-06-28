@@ -17,13 +17,24 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  * Created by ${Rinkesh} on 27/06/17.
  */
 
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     private ProgressDialog progressDialog;
+
+    protected abstract String getActivityTitle();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setUpCalligraphyFont();
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("Sign In");
+        }
+
+    }
+
+    private void setUpCalligraphyFont() {
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                 .setDefaultFontPath("fonts/opensanslight.ttf")
                 .setFontAttrId(R.attr.fontPath)
@@ -57,7 +68,7 @@ public class BaseActivity extends AppCompatActivity {
         super.onStart();
     }
 
-    protected void moveNextTo(Class<?> nextActivity) {
+    public void moveNextTo(Class<?> nextActivity) {
         Intent intent = new Intent(this, nextActivity);
         startActivity(intent);
     }

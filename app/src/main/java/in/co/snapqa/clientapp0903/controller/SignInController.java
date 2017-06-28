@@ -3,11 +3,13 @@ package in.co.snapqa.clientapp0903.controller;
 import android.util.Log;
 import android.widget.Toast;
 
+import in.co.snapqa.clientapp0903.base.BaseActivity;
 import in.co.snapqa.clientapp0903.interfaces.ApiControllerListener;
+import in.co.snapqa.clientapp0903.models.OTPResponse;
+import in.co.snapqa.clientapp0903.models.SendOTP;
 import in.co.snapqa.clientapp0903.models.TokenRequest;
 import in.co.snapqa.clientapp0903.models.TokenResponse;
 import in.co.snapqa.clientapp0903.network.APIClient;
-import in.co.snapqa.clientapp0903.ui.SignInActivity;
 import in.co.snapqa.clientapp0903.utils.AppSharedPreferenceHelper;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -15,9 +17,9 @@ import retrofit2.Response;
 
 public class SignInController {
     private final ApiControllerListener apiControllerListener;
-    private SignInActivity mContext;
+    private BaseActivity mContext;
 
-    public SignInController(SignInActivity context,
+    public SignInController(BaseActivity context,
             ApiControllerListener apiControllerListener) {
         mContext = context;
         this.apiControllerListener = apiControllerListener;
@@ -35,9 +37,6 @@ public class SignInController {
                 mContext.dismissDialog();
                 if (response.isSuccessful()) {
                     TokenResponse tokenResponse = response.body();
-//                    statusCode = response.code();
-                    //String token = tokenResponse.getToken();
-
                     switch (tokenResponse.message) {
                         case "Successful":
                             Toast.makeText(mContext, "Success",
@@ -69,5 +68,29 @@ public class SignInController {
                 Toast.makeText(mContext, "Failed", Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    public void callOtpVerify(String phone) {
+        SendOTP sendOTPObj = new SendOTP("");
+        sendOTPObj.setPhone(phone);
+        APIClient.getClient().otpVerified(sendOTPObj).enqueue(new Callback<OTPResponse>() {
+            @Override
+            public void onResponse(Call<OTPResponse> call,
+                    retrofit2.Response<OTPResponse> response) {
+                String message = response.body().getMessage();
+                if (message.equals("Successful")) {
+                    Toast.makeText(mContext, "Successfully Verified",
+                            Toast.LENGTH_LONG).show();
+                    mContext.dismissDialog();
+                    apiControllerListener.onSuccessResult(response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<OTPResponse> call, Throwable t) {
+                mContext.dismissDialog();
+            }
+        });
+
     }
 }

@@ -51,6 +51,7 @@ public class SignInActivity extends BaseActivity implements ApiControllerListene
     }
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,9 +71,6 @@ public class SignInActivity extends BaseActivity implements ApiControllerListene
         });
 
         drawable = getResources().getDrawable(R.drawable.user);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("Sign In");
-        }
 
 
         signInButton.setOnClickListener(new View.OnClickListener() {
@@ -109,4 +107,10 @@ public class SignInActivity extends BaseActivity implements ApiControllerListene
     public void onFailureResult() {
 
     }
+
+    @Override
+    protected String getActivityTitle() {
+        return "Sign In";
+    }
+
 }

@@ -60,7 +60,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                forgotPasswordRequest.setEmail(email.getText().toString());
+//                forgotPasswordRequest.setEmail(email.getText().toString());
                 forgotPasswordRequest.setPhone(phone.getText().toString());
 
                 Call<ForgotPasswordResponse> call = service.forgotPassword(forgotPasswordRequest);
