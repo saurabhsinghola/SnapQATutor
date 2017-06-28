@@ -1,22 +1,20 @@
-package in.co.snapqa.clientapp0903;
+package in.co.snapqa.clientapp0903.ui;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
+import in.co.snapqa.clientapp0903.R;
 import in.co.snapqa.clientapp0903.interfaces.API;
-import in.co.snapqa.clientapp0903.models.AuthRequest;
 import in.co.snapqa.clientapp0903.models.PaymentDetailsRequest;
 import in.co.snapqa.clientapp0903.models.PaymentDetailsResponse;
-import me.anwarshahriar.calligrapher.Calligrapher;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -27,17 +25,15 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class PaymentDetailsActivity extends AppCompatActivity {
 
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String Key = "key";
     EditText bankAccountNumber, ifscCode, panNumber;
     Button submit, skip;
     String acNo, ifsc, pan;
     PaymentDetailsRequest paymentDetailsRequest;
     ProgressDialog progressDialog;
-
-
     String token;
     SharedPreferences sharedpreferences;
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    public static final String Key = "key";
 
     @Override
     protected void attachBaseContext(Context newBase) {

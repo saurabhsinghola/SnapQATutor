@@ -1,4 +1,4 @@
-package in.co.snapqa.clientapp0903;
+package in.co.snapqa.clientapp0903.ui;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.keiferstone.nonet.NoNet;
 
+import in.co.snapqa.clientapp0903.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 

@@ -1,4 +1,4 @@
-package in.co.snapqa.clientapp0903;
+package in.co.snapqa.clientapp0903.ui;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.subhrajyoti.passwordview.PasswordView;
 
+import in.co.snapqa.clientapp0903.R;
 import in.co.snapqa.clientapp0903.base.BaseActivity;
 import in.co.snapqa.clientapp0903.controller.SignInController;
 import in.co.snapqa.clientapp0903.interfaces.ApiControllerListener;

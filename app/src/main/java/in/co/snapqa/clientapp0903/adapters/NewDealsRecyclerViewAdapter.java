@@ -1,12 +1,8 @@
 package in.co.snapqa.clientapp0903.adapters;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -26,16 +22,14 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import in.co.snapqa.clientapp0903.AcceptedDeadlineSessionFragment;
-import in.co.snapqa.clientapp0903.AcceptedLiveSessionFragment;
-import in.co.snapqa.clientapp0903.MainActivity;
-import in.co.snapqa.clientapp0903.NewDealsFragment;
 import in.co.snapqa.clientapp0903.R;
 import in.co.snapqa.clientapp0903.interfaces.API;
 import in.co.snapqa.clientapp0903.models.AcceptDealRequest;
 import in.co.snapqa.clientapp0903.models.AcceptedDealResponse;
 import in.co.snapqa.clientapp0903.models.NewDealResponses;
-import me.anwarshahriar.calligrapher.Calligrapher;
+import in.co.snapqa.clientapp0903.ui.AcceptedDeadlineSessionFragment;
+import in.co.snapqa.clientapp0903.ui.AcceptedLiveSessionFragment;
+import in.co.snapqa.clientapp0903.ui.MainActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -49,23 +43,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NewDealsRecyclerViewAdapter extends RecyclerView.Adapter<NewDealsRecyclerViewAdapter.MyViewHolder> {
 
 
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String Key = "key";
     NewDealResponses newDealResponsess;
     String ftime;
     Date date;
     Calendar cal;
     AlertDialog.Builder alertDialog;
     String testDate;
-
     MainActivity mainActivity = new MainActivity();
-
     Context context;
-
     SharedPreferences sharedpreferences;
-
-
-
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    public static final String Key = "key";
 
     public NewDealsRecyclerViewAdapter(NewDealResponses newDealResponses){
         newDealResponsess = newDealResponses;

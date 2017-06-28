@@ -22,13 +22,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import in.co.snapqa.clientapp0903.AcceptedLiveSessionFragment;
-import in.co.snapqa.clientapp0903.MainActivity;
 import in.co.snapqa.clientapp0903.R;
 import in.co.snapqa.clientapp0903.interfaces.API;
 import in.co.snapqa.clientapp0903.models.AcceptDealRequest;
 import in.co.snapqa.clientapp0903.models.AcceptedDealResponse;
 import in.co.snapqa.clientapp0903.models.NewDealResponses;
+import in.co.snapqa.clientapp0903.ui.AcceptedLiveSessionFragment;
+import in.co.snapqa.clientapp0903.ui.MainActivity;
 import me.anwarshahriar.calligrapher.Calligrapher;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,19 +42,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ScheduledDeadlineSessionRecyclerViewAdapter extends RecyclerView.Adapter<ScheduledDeadlineSessionRecyclerViewAdapter.MyViewHolder> {
 
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String Key = "key";
     NewDealResponses newDealResponsess;
     String ftime;
     Date date;
     Calendar cal;
     AlertDialog.Builder alertDialog;
     String testDate;
-
     Context context;
-
     SharedPreferences sharedpreferences;
-
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    public static final String Key = "key";
 
     public ScheduledDeadlineSessionRecyclerViewAdapter(NewDealResponses newDealResponses) {
         newDealResponsess = newDealResponses;

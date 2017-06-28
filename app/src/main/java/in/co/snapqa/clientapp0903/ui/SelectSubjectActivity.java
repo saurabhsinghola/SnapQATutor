@@ -1,15 +1,14 @@
-package in.co.snapqa.clientapp0903;
+package in.co.snapqa.clientapp0903.ui;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,13 +16,13 @@ import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.ToggleButton;
-import java.util.ArrayList;
-import java.util.Locale;
 
+import java.util.ArrayList;
+
+import in.co.snapqa.clientapp0903.R;
 import in.co.snapqa.clientapp0903.interfaces.API;
 import in.co.snapqa.clientapp0903.models.SubjectAddRequest;
 import in.co.snapqa.clientapp0903.models.SubjectAddResponse;
-import me.anwarshahriar.calligrapher.Calligrapher;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -32,10 +31,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-import static android.R.attr.typeface;
-
 public class SelectSubjectActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
 
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String Key = "key";
     ToggleButton mechanicalSubjects, civilSubjects, electricalSubjects, mathSubjects,physicsSubjects, chemistrySubjects, softwareSubjects, economicsSubjects, miscSubjects;
     ArrayList<String> subjectList;
     LinearLayout mechSubjectsLayout, civilSubjectsLayout, electricalSubjectsLayout, mathSubjectLayout, physicsSubjectLayout, chemistrySubjectLayout, softwareSubjectLayout, economicsSubjectLayout, miscSubjectLayout;
@@ -51,16 +50,9 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
     ToggleButton finance, accountancy, engineeringEconomics, probabilityEconomics, statisticsEconomics, operationResearch;
     ToggleButton roboticsMisc, philosophy, humanities, essayWriting, alternativeEnergy, powderMetaallurgy, geology, geophysics, operationResearchMisc, engineeringCosttAnalysis;
     ScrollView scrollView;
-
     ProgressDialog progressDialog;
-
     Button selectSubject;
-
     SharedPreferences sharedpreferences;
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    public static final String Key = "key";
-
-
 
     @Override
     protected void attachBaseContext(Context newBase) {

@@ -1,4 +1,4 @@
-package in.co.snapqa.clientapp0903;
+package in.co.snapqa.clientapp0903.ui;
 
 
 import android.app.ProgressDialog;
@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import in.co.snapqa.clientapp0903.adapters.NewDealsRecyclerViewAdapter;
+import in.co.snapqa.clientapp0903.R;
 import in.co.snapqa.clientapp0903.adapters.ScheduledDeadlineSessionRecyclerViewAdapter;
 import in.co.snapqa.clientapp0903.interfaces.API;
 import in.co.snapqa.clientapp0903.models.AuthRequest;
@@ -35,12 +35,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class AcceptedDeadlineSessionFragment extends Fragment {
 
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String Key = "key";
     SharedPreferences sharedPreferences;
     RecyclerView newDealsRecyclerView;
     RecyclerView.LayoutManager layoutManager;
     NewDealResponses newDealResponses;
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    public static final String Key = "key";
     ScheduledDeadlineSessionRecyclerViewAdapter scheduledDeadlineSessionRecyclerViewAdapter;
     ProgressDialog progressDialog;
     TextView tv;

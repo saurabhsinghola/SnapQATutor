@@ -1,29 +1,24 @@
-package in.co.snapqa.clientapp0903;
+package in.co.snapqa.clientapp0903.ui;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.InputType;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.view.accessibility.AccessibilityManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.keiferstone.nonet.NoNet;
-import com.msg91.sendotp.library.SendOtpVerification;
-import com.msg91.sendotp.library.Verification;
 import com.subhrajyoti.passwordview.PasswordView;
 
+import in.co.snapqa.clientapp0903.R;
 import in.co.snapqa.clientapp0903.interfaces.API;
 import in.co.snapqa.clientapp0903.models.SignUpRequest;
 import in.co.snapqa.clientapp0903.models.SignUpResponse;
-import me.anwarshahriar.calligrapher.Calligrapher;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,23 +29,18 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class SignUpActivity extends AppCompatActivity {
 
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String Phone = "phone";
+    public static final String Key = "key";
     private static final String TAG = "";
     EditText signUpPhone, signUpPassword, signUpEmail, signUpName, signUpWhatsapp;
     Button signUpButton;
     SharedPreferences.Editor editor;
     PasswordView signupPassword;
-
-
     ProgressDialog progressDialog;
-
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     String namePattern = "[a-zA-Z ]+[ ]+[a-zA-Z]+[a-zA-Z ]";
-
     SharedPreferences sharedpreferences;
-
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    public static final String Phone = "phone";
-    public static final String Key = "key";
 
     @Override
     protected void onStart() {

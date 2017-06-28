@@ -1,4 +1,4 @@
-package in.co.snapqa.clientapp0903;
+package in.co.snapqa.clientapp0903.ui;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.subhrajyoti.passwordview.PasswordView;
 
+import in.co.snapqa.clientapp0903.R;
 import in.co.snapqa.clientapp0903.interfaces.API;
 import in.co.snapqa.clientapp0903.models.ChangePasswordRequest;
 import in.co.snapqa.clientapp0903.models.ChangePasswordResponse;

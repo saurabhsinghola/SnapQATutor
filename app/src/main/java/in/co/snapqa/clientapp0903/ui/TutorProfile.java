@@ -1,4 +1,4 @@
-package in.co.snapqa.clientapp0903;
+package in.co.snapqa.clientapp0903.ui;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -18,11 +18,10 @@ import com.keiferstone.nonet.NoNet;
 
 import java.util.ArrayList;
 
+import in.co.snapqa.clientapp0903.R;
 import in.co.snapqa.clientapp0903.interfaces.API;
-import in.co.snapqa.clientapp0903.models.AcceptedDealResponse;
 import in.co.snapqa.clientapp0903.models.AuthRequest;
 import in.co.snapqa.clientapp0903.models.UserProfileResponse;
-import me.anwarshahriar.calligrapher.Calligrapher;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -33,12 +32,12 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class TutorProfile extends AppCompatActivity {
 
-    TextView phoneNumber, whatsappNumber, email, accountNumber, IFSCCode, specialization, currentBalance, totalEarning, panNumber;
-    SharedPreferences sharedpreferences;
     public static final String MyPREFERENCES = "MyPrefs" ;
     public static final String Key = "key";
     public static final String Subjects = "Subjects";
     public static final String Bank = "Bank";
+    TextView phoneNumber, whatsappNumber, email, accountNumber, IFSCCode, specialization, currentBalance, totalEarning, panNumber;
+    SharedPreferences sharedpreferences;
     String rating, name, specializationString = "";
     ArrayList<String> specs;
     FloatingActionButton paymentEditFAB, specializationEditFAB;

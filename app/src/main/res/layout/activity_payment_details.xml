@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="in.co.snapqa.clientapp0903.PaymentDetailsActivity"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:padding="24dp"
+    tools:context="in.co.snapqa.clientapp0903.ui.PaymentDetailsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,10 +28,10 @@
                 android:id="@+id/payment_details_account_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
                 android:hint="Bank Account Number"
-                android:maxLines="1"
                 android:inputType="number"
+                android:maxLines="1"
+                android:paddingLeft="8dp"
                 android:textSize="16dp"/>
 
         </android.support.design.widget.TextInputLayout>
@@ -48,8 +47,8 @@
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginBottom="8dp"
             android:layout_gravity="bottom"
+            android:layout_marginBottom="8dp"
             android:layout_marginRight="8dp"
             android:src="@drawable/checked"/>
 
@@ -59,10 +58,10 @@
 
 
             <EditText
+                android:id="@+id/payment_details_ifsc_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="IFSC Code"
-                android:id="@+id/payment_details_ifsc_code"
                 android:maxLines="1"
                 android:paddingLeft="8dp"
                 android:textSize="16dp"/>
@@ -79,8 +78,8 @@
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginBottom="8dp"
             android:layout_gravity="bottom"
+            android:layout_marginBottom="8dp"
             android:layout_marginRight="8dp"
             android:src="@drawable/idcard"/>
 
@@ -90,10 +89,10 @@
 
 
             <EditText
+                android:id="@+id/payment_details_pan_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="PAN Number"
-                android:id="@+id/payment_details_pan_number"
                 android:maxLines="1"
                 android:paddingLeft="8dp"
                 android:textSize="16dp"/>
@@ -113,26 +112,26 @@
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
             android:layout_marginTop="32dp"
+            android:layout_weight="1"
             android:background="@color/colorPrimary"
             android:text="Skip"
             android:textColor="#FFFFFF"
-            android:textSize="16dp"
-            android:layout_weight="1"
-            android:layout_marginRight="8dp"/>
+            android:textSize="16dp"/>
 
         <Button
             android:id="@+id/payment_details_submit_button"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="32dp"
+            android:layout_weight="1"
             android:background="@color/colorPrimary"
             android:text="Submit"
             android:textColor="#FFFFFF"
-            android:textSize="16dp"
-            android:layout_weight="1"
-            android:layout_marginLeft="8dp"/>
+            android:textSize="16dp"/>
 
     </LinearLayout>
 

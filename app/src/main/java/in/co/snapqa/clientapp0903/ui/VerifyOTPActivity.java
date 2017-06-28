@@ -1,11 +1,11 @@
-package in.co.snapqa.clientapp0903;
+package in.co.snapqa.clientapp0903.ui;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,16 +20,10 @@ import com.tuenti.smsradar.Sms;
 import com.tuenti.smsradar.SmsListener;
 import com.tuenti.smsradar.SmsRadar;
 
-import java.io.IOException;
-
+import in.co.snapqa.clientapp0903.R;
 import in.co.snapqa.clientapp0903.interfaces.API;
 import in.co.snapqa.clientapp0903.models.OTPResponse;
 import in.co.snapqa.clientapp0903.models.SendOTP;
-import me.anwarshahriar.calligrapher.Calligrapher;
-import okhttp3.Interceptor;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
@@ -39,21 +33,16 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class VerifyOTPActivity extends AppCompatActivity implements VerificationListener{
 
-    Verification verification;
-    EditText enterOTP;
-    Button verifyOTP;
-
-    API service;
-
-    TextView didntReceiveOTP;
-
-    SharedPreferences sharedpreferences;
-    ProgressDialog progressDialog;
-
     public static final String MyPREFERENCES = "MyPrefs" ;
     public static final String Phone = "phone";
     public String phone;
-
+    Verification verification;
+    EditText enterOTP;
+    Button verifyOTP;
+    API service;
+    TextView didntReceiveOTP;
+    SharedPreferences sharedpreferences;
+    ProgressDialog progressDialog;
     String TAG = "OTP Verification";
 
     @Override

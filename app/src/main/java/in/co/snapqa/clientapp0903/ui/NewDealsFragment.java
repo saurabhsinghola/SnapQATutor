@@ -1,4 +1,4 @@
-package in.co.snapqa.clientapp0903;
+package in.co.snapqa.clientapp0903.ui;
 
 
 import android.app.ProgressDialog;
@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,18 +17,17 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import in.co.snapqa.clientapp0903.R;
 import in.co.snapqa.clientapp0903.adapters.NewDealsRecyclerViewAdapter;
 import in.co.snapqa.clientapp0903.interfaces.API;
 import in.co.snapqa.clientapp0903.models.AuthRequest;
 import in.co.snapqa.clientapp0903.models.NewDealResponses;
-import me.anwarshahriar.calligrapher.Calligrapher;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
 /**
@@ -37,12 +35,12 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  */
 public class NewDealsFragment extends Fragment {
 
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String Key = "key";
     SharedPreferences sharedPreferences;
     RecyclerView newDealsRecyclerView;
     RecyclerView.LayoutManager layoutManager;
     NewDealResponses newDealResponses;
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    public static final String Key = "key";
     NewDealsRecyclerViewAdapter newDealsRecyclerViewAdapter;
 
     TextView tv;
