@@ -7,6 +7,8 @@ import in.co.snapqa.clientapp0903.base.BaseActivity;
 import in.co.snapqa.clientapp0903.interfaces.ApiControllerListener;
 import in.co.snapqa.clientapp0903.models.OTPResponse;
 import in.co.snapqa.clientapp0903.models.SendOTP;
+import in.co.snapqa.clientapp0903.models.SignUpRequest;
+import in.co.snapqa.clientapp0903.models.SignUpResponse;
 import in.co.snapqa.clientapp0903.models.TokenRequest;
 import in.co.snapqa.clientapp0903.models.TokenResponse;
 import in.co.snapqa.clientapp0903.network.APIClient;
@@ -89,6 +91,23 @@ public class SignInController {
             @Override
             public void onFailure(Call<OTPResponse> call, Throwable t) {
                 mContext.dismissDialog();
+            }
+        });
+
+    }
+
+    public void callSignUpApi(SignUpRequest signUpRequest) {
+
+        APIClient.getClient().signUp(signUpRequest).enqueue(new Callback<SignUpResponse>() {
+            @Override
+            public void onResponse(Call<SignUpResponse> call, Response<SignUpResponse> response) {
+
+                apiControllerListener.onSuccessResult(response);
+            }
+
+            @Override
+            public void onFailure(Call<SignUpResponse> call, Throwable t) {
+
             }
         });
 
