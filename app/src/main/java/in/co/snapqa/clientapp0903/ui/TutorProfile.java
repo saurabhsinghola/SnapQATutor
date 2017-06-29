@@ -1,66 +1,48 @@
 package in.co.snapqa.clientapp0903.ui;
 
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.keiferstone.nonet.NoNet;
-
 import java.util.ArrayList;
 
 import in.co.snapqa.clientapp0903.R;
-import in.co.snapqa.clientapp0903.interfaces.API;
-import in.co.snapqa.clientapp0903.models.AuthRequest;
+import in.co.snapqa.clientapp0903.base.BaseActivity;
+import in.co.snapqa.clientapp0903.controller.TutorController;
+import in.co.snapqa.clientapp0903.interfaces.ApiControllerListener;
 import in.co.snapqa.clientapp0903.models.UserProfileResponse;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import in.co.snapqa.clientapp0903.utils.AppSharedPreferenceHelper;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class TutorProfile extends AppCompatActivity {
+public class TutorProfile extends BaseActivity implements ApiControllerListener {
 
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    public static final String Key = "key";
-    public static final String Subjects = "Subjects";
-    public static final String Bank = "Bank";
-    TextView phoneNumber, whatsappNumber, email, accountNumber, IFSCCode, specialization, currentBalance, totalEarning, panNumber;
-    SharedPreferences sharedpreferences;
+    TextView phoneNumber, whatsappNumber, email, accountNumber, IFSCCode, specialization,
+            currentBalance, totalEarning, panNumber;
+    //    SharedPreferences sharedpreferences;
     String rating, name, specializationString = "";
     ArrayList<String> specs;
     FloatingActionButton paymentEditFAB, specializationEditFAB;
-    Typeface typeface;
-    SharedPreferences.Editor editor;
+//    SharedPreferences.Editor editor;
 
     CollapsingToolbarLayout collapsingToolbarLayout;
 
-    ProgressDialog progressDialog;
+//    ProgressDialog progressDialog;
 
     @Override
     protected void onStart() {
         super.onStart();
-        NoNet.monitor(this)
-                .poll()
-                .snackbar()
-                .start();
     }
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(TutorProfile.this, MainActivity.class);
-        startActivity(intent);
+//        TODO KILL Current Activity
+        moveNextTo(MainActivity.class);
     }
 
     @Override
@@ -69,31 +51,21 @@ public class TutorProfile extends AppCompatActivity {
     }
 
     @Override
+    protected String getActivityTitle() {
+        return "Profile";
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutor_profile);
 
-        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/opensanslight.ttf")
-                .setFontAttrId(R.attr.fontPath)
-                .build()
-        );
-
-        typeface = Typeface.createFromAsset(this.getAssets(), "fonts/opensanslight.ttf");
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        NoNet.configure()
-                .endpoint("https://google.com")
-                .timeout(5)
-                .connectedPollFrequency(60)
-                .disconnectedPollFrequency(1);
+        String token =
+                AppSharedPreferenceHelper.getString(AppSharedPreferenceHelper.KEY, "notPresent");
 
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        String token = sharedpreferences.getString(Key, "notPresent");
-
-        progressDialog = ProgressDialog.show(TutorProfile.this, "Just a sec!", "Loading Details", true);
 
         phoneNumber = (TextView) findViewById(R.id.tutor_profile_phone_number);
         whatsappNumber = (TextView) findViewById(R.id.tutor_profile_whatsapp_number);
@@ -105,87 +77,74 @@ public class TutorProfile extends AppCompatActivity {
         totalEarning = (TextView) findViewById(R.id.tutor_profile_total_earning);
         panNumber = (TextView) findViewById(R.id.tutor_profile_pan_number);
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
-
-
-        paymentEditFAB = (FloatingActionButton) findViewById(R.id.tutor_profile_payment_details_edit);
-        specializationEditFAB = (FloatingActionButton) findViewById(R.id.tutor_profile_specialization_edit);
+        paymentEditFAB =
+                (FloatingActionButton) findViewById(R.id.tutor_profile_payment_details_edit);
+        specializationEditFAB =
+                (FloatingActionButton) findViewById(R.id.tutor_profile_specialization_edit);
 
         specializationString = "";
+        showMessageDialog("Just a sec!", "Loading Details");
 
         specializationEditFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editor = sharedpreferences.edit();
-                editor.putString(Subjects, "Subjects");
-                editor.commit();
-                Intent intent = new Intent(TutorProfile.this, SelectSubjectActivity.class);
-                startActivity(intent);
+                AppSharedPreferenceHelper.set(AppSharedPreferenceHelper.SUBJECTS, "Subjects");
+                moveNextTo(SelectSubjectActivity.class);
             }
         });
 
-        AuthRequest authRequest = new AuthRequest();
-        authRequest.setToken(token);
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(getString(R.string.api_url))
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        API service = retrofit.create(API.class);
-
-        Call<UserProfileResponse> call = service.userProfile(authRequest);
-        call.enqueue(new Callback<UserProfileResponse>() {
-            @Override
-            public void onResponse(Call<UserProfileResponse> call, Response<UserProfileResponse> response) {
-                progressDialog.dismiss();
-                Log.d("name:  ", " " + response.body().getName());
-                rating = String.valueOf(response.body().getRating());
-                name = response.body().getName() + "(" + rating + ")";
-                collapsingToolbarLayout.setTitle(name);
-                collapsingToolbarLayout.setExpandedTitleTypeface(typeface);
-                collapsingToolbarLayout.setCollapsedTitleTypeface(typeface);
-                phoneNumber.setText(response.body().getPhone());
-                whatsappNumber.setText(response.body().getPhone());
-                email.setText(response.body().getEmail());
-                currentBalance.setText(String.valueOf(response.body().getPoints()));
-                totalEarning.setText(String.valueOf(response.body().getPoints()));
-                specs = (ArrayList<String>) response.body().getSpecialization();
-                if(specs.isEmpty()){
-                    Log.d("no", " subjects ");
-                }else {
-                    for(int i = 0; i< specs.size(); i++){
-
-                        if(i == 0){
-                            specializationString = specs.get(i).toString();
-                        }else {
-                            specializationString = specializationString + "\n" + specs.get(i).toString();
-                            Log.d("spe str  ", "  " + specializationString);
-                            specialization.setText(specializationString);
-                        }
-
-                    }
-                }
-                panNumber.setText(response.body().getBankDetails().getPanNumber());
-                IFSCCode.setText(response.body().getBankDetails().getiFSC());
-                accountNumber.setText(response.body().getBankDetails().getAccNo());
-            }
-
-            @Override
-            public void onFailure(Call<UserProfileResponse> call, Throwable t) {
-                Log.d("error in response:  ", "  " + t.getMessage());
-            }
-        });
+        new TutorController(this, this).callUserProfile();
 
         paymentEditFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editor = sharedpreferences.edit();
-                editor.putString(Bank, "Bank");
-                editor.commit();
-                Intent paymentEditIntent = new Intent(TutorProfile.this, PaymentDetailsActivity.class);
-                startActivity(paymentEditIntent);
+                AppSharedPreferenceHelper.set(AppSharedPreferenceHelper.BANK, "Bank");
+                moveNextTo(PaymentDetailsActivity.class);
             }
         });
+
+    }
+
+    @Override
+    public void onSuccessResult(Object profileResponse) {
+        UserProfileResponse response = (UserProfileResponse) profileResponse;
+        rating = String.valueOf(response.getRating());
+        name = response.getName() + "(" + rating + ")";
+        collapsingToolbarLayout.setTitle(name);
+        Typeface typeface = Typeface.createFromAsset(TutorProfile.this.getAssets(),
+                "fonts/opensanslight.ttf");
+        collapsingToolbarLayout.setExpandedTitleTypeface(typeface);
+        collapsingToolbarLayout.setCollapsedTitleTypeface(typeface);
+        phoneNumber.setText(response.getPhone());
+        whatsappNumber.setText(response.getPhone());
+        email.setText(response.getEmail());
+        currentBalance.setText(String.valueOf(response.getPoints()));
+        totalEarning.setText(String.valueOf(response.getPoints()));
+        specs = (ArrayList<String>) response.getSpecialization();
+        if (specs.isEmpty()) {
+            Log.d("no", " subjects ");
+        } else {
+            for (int i = 0; i < specs.size(); i++) {
+
+                if (i == 0) {
+                    specializationString = specs.get(i).toString();
+                } else {
+                    specializationString =
+                            specializationString + "\n" + specs.get(i).toString();
+                    Log.d("spe str  ", "  " + specializationString);
+                    specialization.setText(specializationString);
+                }
+
+            }
+        }
+        panNumber.setText(response.getBankDetails().getPanNumber());
+        IFSCCode.setText(response.getBankDetails().getiFSC());
+        accountNumber.setText(response.getBankDetails().getAccNo());
+
+    }
+
+    @Override
+    public void onFailureResult() {
 
     }
 }

@@ -28,11 +28,22 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setUpCalligraphyFont();
+        setUpNetMonitor();
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle("Sign In");
         }
 
     }
+
+    private void setUpNetMonitor() {
+        NoNet.configure()
+                .endpoint("https://google.com")
+                .timeout(5)
+                .connectedPollFrequency(60)
+                .disconnectedPollFrequency(1);
+
+    }
+
 
     private void setUpCalligraphyFont() {
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()

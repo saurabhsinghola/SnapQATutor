@@ -8,6 +8,8 @@ import in.co.snapqa.clientapp0903.SnapApplication;
 public class AppSharedPreferenceHelper {
     public static final String PHONE = "phone";
     public static final String KEY = "key";
+    public static final String SUBJECTS = "subjects";
+    public static final String BANK="BANK";
     private static final String PREF_NAME = "snapQATutorPref";
     // Shared Preferences
     private static SharedPreferences pref;
