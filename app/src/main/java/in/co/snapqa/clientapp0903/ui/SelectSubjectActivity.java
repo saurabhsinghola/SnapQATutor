@@ -23,6 +23,7 @@ import in.co.snapqa.clientapp0903.R;
 import in.co.snapqa.clientapp0903.interfaces.API;
 import in.co.snapqa.clientapp0903.models.SubjectAddRequest;
 import in.co.snapqa.clientapp0903.models.SubjectAddResponse;
+import in.co.snapqa.clientapp0903.utils.AppSharedPreferenceHelper;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -33,22 +34,38 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class SelectSubjectActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
 
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    public static final String Key = "key";
-    ToggleButton mechanicalSubjects, civilSubjects, electricalSubjects, mathSubjects,physicsSubjects, chemistrySubjects, softwareSubjects, economicsSubjects, miscSubjects;
+    private static final String TAG = SelectSubjectActivity.class.getSimpleName();
+    ToggleButton mechanicalSubjects, civilSubjects, electricalSubjects, mathSubjects,
+            physicsSubjects, chemistrySubjects, softwareSubjects, economicsSubjects, miscSubjects;
     ArrayList<String> subjectList;
-    LinearLayout mechSubjectsLayout, civilSubjectsLayout, electricalSubjectsLayout, mathSubjectLayout, physicsSubjectLayout, chemistrySubjectLayout, softwareSubjectLayout, economicsSubjectLayout, miscSubjectLayout;
-    ToggleButton thermodynamics, heatTransfer, fluidMechanics, thermoFluids, compressibleFluidFlow, cfd, internalCombustion, turbomachines, statics, dynamics, strengthOfMaterial, theoryOfMachines, machineDesign, vibrations;
-    ToggleButton systemDynamics, designOfMachineElements, manufacturingProcess, materialScience, compositeMaterial, measurement, controlSystem, instrumentation, finiteElementAnalysis, engineeringDrawing, solidWorks;
+    LinearLayout mechSubjectsLayout, civilSubjectsLayout, electricalSubjectsLayout,
+            mathSubjectLayout, physicsSubjectLayout, chemistrySubjectLayout, softwareSubjectLayout,
+            economicsSubjectLayout, miscSubjectLayout;
+    ToggleButton thermodynamics, heatTransfer, fluidMechanics, thermoFluids, compressibleFluidFlow,
+            cfd, internalCombustion, turbomachines, statics, dynamics, strengthOfMaterial,
+            theoryOfMachines, machineDesign, vibrations;
+    ToggleButton systemDynamics, designOfMachineElements, manufacturingProcess, materialScience,
+            compositeMaterial, measurement, controlSystem, instrumentation, finiteElementAnalysis,
+            engineeringDrawing, solidWorks;
     ToggleButton ansys, autocad, matlabMechanical, robotics;
-    ToggleButton staticsCivil, dynamicsCivil, strengthOfMaterialCivil, structuralAnalysis, environmentalEngineering, hydraulics, soilMechanics, surveying, fluidMechanicsCivil, engineeringDrawingCivil, solidWorksCivil, transportationEngineering;
-    ToggleButton basicEC, circuits, measurementElectrical, controlSystemElectrical, embeddedSystem, electrostatics, powerSystems, electricalEngineering, roboticsElectrical, matlabElectrical;
-    ToggleButton linearAlgebra, precalculus, calculus1, calculus2, calculus3, differentialEquations, numericalMethods, sequenceAndSeries, vectors, probability, statistics, vba, complexMaths;
-    ToggleButton mechanics, physics, electrostaticsPhysics, soundAndWaves, optics, mmodernPhysics, gravitation;
+    ToggleButton staticsCivil, dynamicsCivil, strengthOfMaterialCivil, structuralAnalysis,
+            environmentalEngineering, hydraulics, soilMechanics, surveying, fluidMechanicsCivil,
+            engineeringDrawingCivil, solidWorksCivil, transportationEngineering;
+    ToggleButton basicEC, circuits, measurementElectrical, controlSystemElectrical, embeddedSystem,
+            electrostatics, powerSystems, electricalEngineering, roboticsElectrical,
+            matlabElectrical;
+    ToggleButton linearAlgebra, precalculus, calculus1, calculus2, calculus3, differentialEquations,
+            numericalMethods, sequenceAndSeries, vectors, probability, statistics, vba,
+            complexMaths;
+    ToggleButton mechanics, physics, electrostaticsPhysics, soundAndWaves, optics, mmodernPhysics,
+            gravitation;
     ToggleButton inorganicChemistry, organicChemistry, physicalChemistry, generalChemistry;
-    ToggleButton matlab, cpp, java, autocadSoftware, ansysSoftware, solidWorksSoftware, vbaSoftware, visualStudio, appDevelopment;
-    ToggleButton finance, accountancy, engineeringEconomics, probabilityEconomics, statisticsEconomics, operationResearch;
-    ToggleButton roboticsMisc, philosophy, humanities, essayWriting, alternativeEnergy, powderMetaallurgy, geology, geophysics, operationResearchMisc, engineeringCosttAnalysis;
+    ToggleButton matlab, cpp, java, autocadSoftware, ansysSoftware, solidWorksSoftware, vbaSoftware,
+            visualStudio, appDevelopment;
+    ToggleButton finance, accountancy, engineeringEconomics, probabilityEconomics,
+            statisticsEconomics, operationResearch;
+    ToggleButton roboticsMisc, philosophy, humanities, essayWriting, alternativeEnergy,
+            powderMetaallurgy, geology, geophysics, operationResearchMisc, engineeringCosttAnalysis;
     ScrollView scrollView;
     ProgressDialog progressDialog;
     Button selectSubject;
@@ -76,7 +93,8 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
 
         mechanicalSubjects = (ToggleButton) findViewById(R.id.sub1toggle);
         civilSubjects = (ToggleButton) findViewById(R.id.civil_subject_toggle);
-        electricalSubjects = (ToggleButton) findViewById(R.id.electrical_and_electronic_subject_toggle);
+        electricalSubjects =
+                (ToggleButton) findViewById(R.id.electrical_and_electronic_subject_toggle);
         mathSubjects = (ToggleButton) findViewById(R.id.mathematics_subject_toggle);
         physicsSubjects = (ToggleButton) findViewById(R.id.physics_subject_toggle);
         chemistrySubjects = (ToggleButton) findViewById(R.id.chemistry_subject_toggle);
@@ -105,7 +123,8 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
         civilSubjectsLayout = (LinearLayout) findViewById(R.id.civil_subjects);
         civilSubjectsLayout.setVisibility(LinearLayout.GONE);
 
-        electricalSubjectsLayout = (LinearLayout) findViewById(R.id.electrical_and_electronic_subjects);
+        electricalSubjectsLayout =
+                (LinearLayout) findViewById(R.id.electrical_and_electronic_subjects);
         electricalSubjectsLayout.setVisibility(LinearLayout.GONE);
 
         mathSubjectLayout = (LinearLayout) findViewById(R.id.math_subjects);
@@ -141,14 +160,18 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
         machineDesign = (ToggleButton) findViewById(R.id.select_subject_machine_design);
         vibrations = (ToggleButton) findViewById(R.id.select_subject_vibrations);
         systemDynamics = (ToggleButton) findViewById(R.id.select_subject_system_dynamics);
-        designOfMachineElements = (ToggleButton) findViewById(R.id.select_subject_design_of_machine);
-        manufacturingProcess = (ToggleButton) findViewById(R.id.select_subject_manufacturing_process);
+        designOfMachineElements =
+                (ToggleButton) findViewById(R.id.select_subject_design_of_machine);
+        manufacturingProcess =
+                (ToggleButton) findViewById(R.id.select_subject_manufacturing_process);
         materialScience = (ToggleButton) findViewById(R.id.select_subject_material_science);
         compositeMaterial = (ToggleButton) findViewById(R.id.select_subject_composite_material);
         measurement = (ToggleButton) findViewById(R.id.select_subject_measurements_mechanical);
         controlSystem = (ToggleButton) findViewById(R.id.select_subject_control_system_mechanical);
-        instrumentation = (ToggleButton) findViewById(R.id.select_subject_instrumentation_mechanical);
-        finiteElementAnalysis = (ToggleButton) findViewById(R.id.select_subject_finite_element_analysis);
+        instrumentation =
+                (ToggleButton) findViewById(R.id.select_subject_instrumentation_mechanical);
+        finiteElementAnalysis =
+                (ToggleButton) findViewById(R.id.select_subject_finite_element_analysis);
         engineeringDrawing = (ToggleButton) findViewById(R.id.select_subject_engineering_drawing);
         solidWorks = (ToggleButton) findViewById(R.id.select_subject_solid_works);
         ansys = (ToggleButton) findViewById(R.id.select_subject_ansys);
@@ -157,24 +180,32 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
         robotics = (ToggleButton) findViewById(R.id.select_subject_robotics);
         staticsCivil = (ToggleButton) findViewById(R.id.select_subject_statics_civil);
         dynamicsCivil = (ToggleButton) findViewById(R.id.select_subject_dynamics_civil);
-        strengthOfMaterialCivil = (ToggleButton) findViewById(R.id.select_subject_strength_of_material_civil);
+        strengthOfMaterialCivil =
+                (ToggleButton) findViewById(R.id.select_subject_strength_of_material_civil);
         structuralAnalysis = (ToggleButton) findViewById(R.id.select_subject_structural_analysis);
-        environmentalEngineering = (ToggleButton) findViewById(R.id.select_subject_environmental_engineering);
+        environmentalEngineering =
+                (ToggleButton) findViewById(R.id.select_subject_environmental_engineering);
         hydraulics = (ToggleButton) findViewById(R.id.select_subject_hydraulics);
         soilMechanics = (ToggleButton) findViewById(R.id.select_subject_soil_mechanics);
         surveying = (ToggleButton) findViewById(R.id.select_subject_surveying);
-        fluidMechanicsCivil = (ToggleButton) findViewById(R.id.select_subject_fluid_mechanics_civil);
-        engineeringDrawingCivil = (ToggleButton) findViewById(R.id.select_subject_engineering_drawing_civil);
+        fluidMechanicsCivil =
+                (ToggleButton) findViewById(R.id.select_subject_fluid_mechanics_civil);
+        engineeringDrawingCivil =
+                (ToggleButton) findViewById(R.id.select_subject_engineering_drawing_civil);
         solidWorksCivil = (ToggleButton) findViewById(R.id.select_subject_solid_works_civil);
-        transportationEngineering = (ToggleButton) findViewById(R.id.select_subject_transportation_engineering);
+        transportationEngineering =
+                (ToggleButton) findViewById(R.id.select_subject_transportation_engineering);
         basicEC = (ToggleButton) findViewById(R.id.select_subject_basic_ec);
         circuits = (ToggleButton) findViewById(R.id.select_subject_circuits);
-        measurementElectrical = (ToggleButton) findViewById(R.id.select_subject_measurements_electrical);
-        controlSystemElectrical = (ToggleButton) findViewById(R.id.select_subject_control_system_electrical);
+        measurementElectrical =
+                (ToggleButton) findViewById(R.id.select_subject_measurements_electrical);
+        controlSystemElectrical =
+                (ToggleButton) findViewById(R.id.select_subject_control_system_electrical);
         embeddedSystem = (ToggleButton) findViewById(R.id.select_subject_embedded_system);
         electrostatics = (ToggleButton) findViewById(R.id.select_subject_electrostatics);
         powerSystems = (ToggleButton) findViewById(R.id.select_subject_power_system);
-        electricalEngineering = (ToggleButton) findViewById(R.id.select_subject_electrical_engineering);
+        electricalEngineering =
+                (ToggleButton) findViewById(R.id.select_subject_electrical_engineering);
         roboticsElectrical = (ToggleButton) findViewById(R.id.select_subject_robotics_electrical);
         matlabElectrical = (ToggleButton) findViewById(R.id.select_subject_matlab_electrical);
         linearAlgebra = (ToggleButton) findViewById(R.id.select_subject_linear_algebra);
@@ -182,7 +213,8 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
         calculus1 = (ToggleButton) findViewById(R.id.select_subject_calculus1);
         calculus2 = (ToggleButton) findViewById(R.id.select_subject_calculus2);
         calculus3 = (ToggleButton) findViewById(R.id.select_subject_calculus3);
-        differentialEquations = (ToggleButton) findViewById(R.id.select_subject_differential_equations);
+        differentialEquations =
+                (ToggleButton) findViewById(R.id.select_subject_differential_equations);
         numericalMethods = (ToggleButton) findViewById(R.id.select_subject_numerical_method);
         sequenceAndSeries = (ToggleButton) findViewById(R.id.select_subject_sequence_and_series);
         vectors = (ToggleButton) findViewById(R.id.select_subject_vectors);
@@ -192,7 +224,8 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
         complexMaths = (ToggleButton) findViewById(R.id.select_subject_complex_maths);
         mechanics = (ToggleButton) findViewById(R.id.select_subject_mechanics_physics);
         physics = (ToggleButton) findViewById(R.id.select_subject_physics);
-        electrostaticsPhysics = (ToggleButton) findViewById(R.id.select_subject_electrostatics_physics);
+        electrostaticsPhysics =
+                (ToggleButton) findViewById(R.id.select_subject_electrostatics_physics);
         soundAndWaves = (ToggleButton) findViewById(R.id.select_subject_sound_and_waves);
         optics = (ToggleButton) findViewById(R.id.select_subject_optics);
         mmodernPhysics = (ToggleButton) findViewById(R.id.select_subject_modern_phisics);
@@ -212,8 +245,10 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
         appDevelopment = (ToggleButton) findViewById(R.id.select_subject_development);
         finance = (ToggleButton) findViewById(R.id.select_subject_finance);
         accountancy = (ToggleButton) findViewById(R.id.select_subject_accountancy);
-        engineeringEconomics = (ToggleButton) findViewById(R.id.select_subject_engineering_economics);
-        probabilityEconomics = (ToggleButton) findViewById(R.id.select_subject_probability_economics);
+        engineeringEconomics =
+                (ToggleButton) findViewById(R.id.select_subject_engineering_economics);
+        probabilityEconomics =
+                (ToggleButton) findViewById(R.id.select_subject_probability_economics);
         statisticsEconomics = (ToggleButton) findViewById(R.id.select_subject_statistics_economics);
         operationResearch = (ToggleButton) findViewById(R.id.select_subject_operations_research);
         roboticsMisc = (ToggleButton) findViewById(R.id.select_subject_robotics_misc);
@@ -224,8 +259,10 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
         powderMetaallurgy = (ToggleButton) findViewById(R.id.select_subject_powder_metallurgy);
         geology = (ToggleButton) findViewById(R.id.select_subject_geology);
         geophysics = (ToggleButton) findViewById(R.id.select_subject_geophysics);
-        operationResearchMisc = (ToggleButton) findViewById(R.id.select_subject_operations_research_misc);
-        engineeringCosttAnalysis = (ToggleButton) findViewById(R.id.select_subject_engineering_cost_analysis);
+        operationResearchMisc =
+                (ToggleButton) findViewById(R.id.select_subject_operations_research_misc);
+        engineeringCosttAnalysis =
+                (ToggleButton) findViewById(R.id.select_subject_engineering_cost_analysis);
 
         thermodynamics.setOnCheckedChangeListener(this);
         heatTransfer.setOnCheckedChangeListener(this);
@@ -329,12 +366,11 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
         matlab.setOnCheckedChangeListener(this);
 
 
-
         // On Click Listeners
         mechanicalSubjects.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
                     chemistrySubjectLayout.setVisibility(LinearLayout.GONE);
                     softwareSubjectLayout.setVisibility(LinearLayout.GONE);
                     mechSubjectsLayout.setVisibility(LinearLayout.VISIBLE);
@@ -345,7 +381,7 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
                     economicsSubjectLayout.setVisibility(LinearLayout.GONE);
                     miscSubjectLayout.setVisibility(LinearLayout.GONE);
                     scrollView.scrollTo(0, mechanicalSubjects.getTop());
-                }else{
+                } else {
                     mechSubjectsLayout.setVisibility(LinearLayout.GONE);
                 }
             }
@@ -354,7 +390,7 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
         civilSubjects.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
                     chemistrySubjectLayout.setVisibility(LinearLayout.GONE);
                     softwareSubjectLayout.setVisibility(LinearLayout.GONE);
                     mechSubjectsLayout.setVisibility(LinearLayout.GONE);
@@ -364,8 +400,8 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
                     physicsSubjectLayout.setVisibility(LinearLayout.GONE);
                     economicsSubjectLayout.setVisibility(LinearLayout.GONE);
                     miscSubjectLayout.setVisibility(LinearLayout.GONE);
-                    scrollView.scrollTo(0,mechanicalSubjects.getBaseline());
-                }else{
+                    scrollView.scrollTo(0, mechanicalSubjects.getBaseline());
+                } else {
                     civilSubjectsLayout.setVisibility(LinearLayout.GONE);
                 }
             }
@@ -374,7 +410,7 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
         electricalSubjects.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
                     chemistrySubjectLayout.setVisibility(LinearLayout.GONE);
                     softwareSubjectLayout.setVisibility(LinearLayout.GONE);
                     mechSubjectsLayout.setVisibility(LinearLayout.GONE);
@@ -385,7 +421,7 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
                     economicsSubjectLayout.setVisibility(LinearLayout.GONE);
                     miscSubjectLayout.setVisibility(LinearLayout.GONE);
                     scrollView.scrollTo(0, civilSubjects.getBaseline());
-                }else{
+                } else {
                     electricalSubjectsLayout.setVisibility(LinearLayout.GONE);
                 }
             }
@@ -394,7 +430,7 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
         mathSubjects.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
                     chemistrySubjectLayout.setVisibility(LinearLayout.GONE);
                     softwareSubjectLayout.setVisibility(LinearLayout.GONE);
                     mechSubjectsLayout.setVisibility(LinearLayout.GONE);
@@ -405,7 +441,7 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
                     economicsSubjectLayout.setVisibility(LinearLayout.GONE);
                     miscSubjectLayout.setVisibility(LinearLayout.GONE);
                     scrollView.scrollTo(0, electricalSubjects.getBaseline());
-                }else{
+                } else {
                     mathSubjectLayout.setVisibility(LinearLayout.GONE);
                 }
             }
@@ -413,7 +449,7 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
         physicsSubjects.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
                     chemistrySubjectLayout.setVisibility(LinearLayout.GONE);
                     softwareSubjectLayout.setVisibility(LinearLayout.GONE);
                     mechSubjectsLayout.setVisibility(LinearLayout.GONE);
@@ -424,7 +460,7 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
                     economicsSubjectLayout.setVisibility(LinearLayout.GONE);
                     miscSubjectLayout.setVisibility(LinearLayout.GONE);
                     scrollView.scrollTo(0, mathSubjects.getBaseline());
-                }else{
+                } else {
                     physicsSubjectLayout.setVisibility(LinearLayout.GONE);
                 }
             }
@@ -432,7 +468,7 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
         chemistrySubjects.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
                     chemistrySubjectLayout.setVisibility(LinearLayout.VISIBLE);
                     softwareSubjectLayout.setVisibility(LinearLayout.GONE);
                     mechSubjectsLayout.setVisibility(LinearLayout.GONE);
@@ -443,7 +479,7 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
                     economicsSubjectLayout.setVisibility(LinearLayout.GONE);
                     miscSubjectLayout.setVisibility(LinearLayout.GONE);
                     scrollView.scrollTo(0, physicsSubjects.getBaseline());
-                }else{
+                } else {
                     chemistrySubjectLayout.setVisibility(LinearLayout.GONE);
                 }
             }
@@ -452,7 +488,7 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
         softwareSubjects.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
                     chemistrySubjectLayout.setVisibility(LinearLayout.GONE);
                     softwareSubjectLayout.setVisibility(LinearLayout.VISIBLE);
                     mechSubjectsLayout.setVisibility(LinearLayout.GONE);
@@ -463,7 +499,7 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
                     economicsSubjectLayout.setVisibility(LinearLayout.GONE);
                     miscSubjectLayout.setVisibility(LinearLayout.GONE);
                     scrollView.scrollTo(0, chemistrySubjects.getBaseline());
-                }else{
+                } else {
                     softwareSubjectLayout.setVisibility(LinearLayout.GONE);
                 }
             }
@@ -472,7 +508,7 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
         economicsSubjects.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
                     chemistrySubjectLayout.setVisibility(LinearLayout.GONE);
                     softwareSubjectLayout.setVisibility(LinearLayout.GONE);
                     mechSubjectsLayout.setVisibility(LinearLayout.GONE);
@@ -483,7 +519,7 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
                     economicsSubjectLayout.setVisibility(LinearLayout.VISIBLE);
                     miscSubjectLayout.setVisibility(LinearLayout.GONE);
                     scrollView.scrollTo(0, softwareSubjects.getBaseline());
-                }else{
+                } else {
                     economicsSubjectLayout.setVisibility(LinearLayout.GONE);
                 }
             }
@@ -492,7 +528,7 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
         miscSubjects.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
                     chemistrySubjectLayout.setVisibility(LinearLayout.GONE);
                     softwareSubjectLayout.setVisibility(LinearLayout.GONE);
                     mechSubjectsLayout.setVisibility(LinearLayout.GONE);
@@ -503,7 +539,7 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
                     economicsSubjectLayout.setVisibility(LinearLayout.GONE);
                     miscSubjectLayout.setVisibility(LinearLayout.VISIBLE);
                     scrollView.scrollTo(0, economicsSubjects.getBaseline());
-                }else{
+                } else {
                     miscSubjectLayout.setVisibility(LinearLayout.GONE);
                 }
             }
@@ -518,35 +554,41 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
 
         final API service = retrofit.create(API.class);
 
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        final String token = sharedpreferences.getString(Key, "notPresent");
+        final String token =
+                AppSharedPreferenceHelper.getString(AppSharedPreferenceHelper.PHONE, "notPresent");
 
         selectSubject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressDialog = ProgressDialog.show(SelectSubjectActivity.this, "Just a sec!", "Saving Your Subjects", true);
+                progressDialog = ProgressDialog.show(SelectSubjectActivity.this, "Just a sec!",
+                        "Saving Your Subjects", true);
                 SubjectAddRequest subjectAddRequest = new SubjectAddRequest();
                 subjectAddRequest.setToken(token);
                 subjectAddRequest.setSubjects(subjectList);
 
-                Call<SubjectAddResponse> subjectAddResponseCall = service.addSubject(subjectAddRequest);
+                Call<SubjectAddResponse> subjectAddResponseCall =
+                        service.addSubject(subjectAddRequest);
 
                 subjectAddResponseCall.enqueue(new Callback<SubjectAddResponse>() {
                     @Override
-                    public void onResponse(Call<SubjectAddResponse> call, Response<SubjectAddResponse> response) {
+                    public void onResponse(Call<SubjectAddResponse> call,
+                            Response<SubjectAddResponse> response) {
                         SubjectAddResponse subjectAddResponse = response.body();
                         Log.d("jhfjksf", " lhdkjahj " + subjectAddResponse.getMessage());
                         Log.d("subkect list:   ", "" + subjectList);
-                        final String subjects = sharedpreferences.getString("Subjects", "notPresent");
-                        if(subjects.equals("Subjects")){
+                        final String subjects =
+                                sharedpreferences.getString("Subjects", "notPresent");
+                        if (subjects.equals("Subjects")) {
                             SharedPreferences.Editor editor = sharedpreferences.edit();
                             editor.remove("Subjects");
                             editor.commit();
-                            Intent intent = new Intent(SelectSubjectActivity.this, TutorProfile.class);
+                            Intent intent =
+                                    new Intent(SelectSubjectActivity.this, TutorProfile.class);
                             progressDialog.dismiss();
                             startActivity(intent);
-                        }else {
-                            Intent mainIntent = new Intent(SelectSubjectActivity.this, PaymentDetailsActivity.class);
+                        } else {
+                            Intent mainIntent = new Intent(SelectSubjectActivity.this,
+                                    PaymentDetailsActivity.class);
                             progressDialog.dismiss();
                             startActivity(mainIntent);
                         }
@@ -564,18 +606,18 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        if(isChecked){
+        if (isChecked) {
             Drawable drawable = getResources().getDrawable(R.drawable.button_rounded_corners_blue);
             buttonView.setBackground(drawable);
             buttonView.setTextColor(Color.parseColor("#FFFFFF"));
             subjectList.add(buttonView.getText().toString());
 
-        }else {
+        } else {
             Drawable drawable = getResources().getDrawable(R.drawable.button_rounded_corners);
             buttonView.setBackground(drawable);
             buttonView.setTextColor(Color.parseColor("#03A9F4"));
-            for(int i=0; i<subjectList.size(); i++){
-                if(buttonView.getText().toString().equals(subjectList.get(i))){
+            for (int i = 0; i < subjectList.size(); i++) {
+                if (buttonView.getText().toString().equals(subjectList.get(i))) {
 
                     subjectList.remove(i);
                     break;
@@ -589,14 +631,12 @@ public class SelectSubjectActivity extends AppCompatActivity implements Compound
 
     @Override
     public void onBackPressed() {
-
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        final String subjects = sharedpreferences.getString("Subjects", "notPresent");
-        Log.d("chjsdgs:  "," + " + subjects);
-        if(subjects.equals("Subjects")){
-            SharedPreferences.Editor editor = sharedpreferences.edit();
-            editor.remove("Subjects");
-            editor.commit();
+        final String subjects =
+                AppSharedPreferenceHelper.getString(AppSharedPreferenceHelper.SUBJECTS,
+                        "notPresent");
+        Log.d(TAG, " + " + subjects);
+        if (subjects.equals("Subjects")) {
+            AppSharedPreferenceHelper.set(AppSharedPreferenceHelper.SUBJECTS, "");
             super.onBackPressed();
         }
 

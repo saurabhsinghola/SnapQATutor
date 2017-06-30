@@ -34,7 +34,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class AcceptedLiveSessionFragment extends Fragment {
 
-    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String MyPREFERENCES = "MyPrefs";
     public static final String Key = "key";
     SharedPreferences sharedPreferences;
     RecyclerView newDealsRecyclerView;
@@ -51,19 +51,21 @@ public class AcceptedLiveSessionFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_accepted_live_session, container, false);
 
         Calligrapher calligrapher = new Calligrapher(getActivity());
         calligrapher.setFont(getActivity(), "fonts/opensanslight.ttf", true);
 
-        newDealsRecyclerView = (RecyclerView) view.findViewById(R.id.accepted_live_session_recycler_view);
+        newDealsRecyclerView =
+                (RecyclerView) view.findViewById(R.id.accepted_live_session_recycler_view);
 
         tv = (TextView) view.findViewById(R.id.accepted_live_session_fragment_rv_tv);
         tv.setVisibility(View.GONE);
 
-        progressDialog = ProgressDialog.show(getActivity(), "Just a sec!", "Loading Accepted Deals", true);
+        progressDialog =
+                ProgressDialog.show(getActivity(), "Just a sec!", "Loading Accepted Deals", true);
 
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.sssZ")
@@ -76,7 +78,8 @@ public class AcceptedLiveSessionFragment extends Fragment {
 
         final API service = retrofit.create(API.class);
 
-        sharedPreferences = this.getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        sharedPreferences =
+                this.getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         String token = sharedPreferences.getString(Key, "notPresent");
 
         AuthRequest authRequest = new AuthRequest();
@@ -86,16 +89,18 @@ public class AcceptedLiveSessionFragment extends Fragment {
 
         call.enqueue(new Callback<NewDealResponses>() {
             @Override
-            public void onResponse(Call<NewDealResponses> call, Response<NewDealResponses> response) {
+            public void onResponse(Call<NewDealResponses> call,
+                    Response<NewDealResponses> response) {
                 newDealResponses = response.body();
                 progressDialog.dismiss();
                 //Log.d("New deal resp:  ", "" + newDealResponses.getResponses().get(2).getAdminName());
 
-                if(newDealResponses.getResponses().isEmpty()){
+                if (newDealResponses.getResponses().isEmpty()) {
 
-                }else {
+                } else {
 
-                    scheduledDeadlineSessionRecyclerViewAdapter = new ScheduledDeadlineSessionRecyclerViewAdapter(newDealResponses);
+                    scheduledDeadlineSessionRecyclerViewAdapter =
+                            new ScheduledDeadlineSessionRecyclerViewAdapter(newDealResponses);
                     layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
                     newDealsRecyclerView.setLayoutManager(layoutManager);
                     newDealsRecyclerView.setAdapter(scheduledDeadlineSessionRecyclerViewAdapter);
