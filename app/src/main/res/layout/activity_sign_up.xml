@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="24dp"
     android:paddingLeft="24dp"
     android:paddingRight="24dp"
     android:paddingTop="24dp"
-    tools:context="in.co.snapqa.clientapp0903.SignUpActivity"
-    android:orientation="vertical">
+    tools:context="in.co.snapqa.clientapp0903.ui.SignUpActivity">
 
 
     <LinearLayout
@@ -20,8 +20,8 @@
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginBottom="8dp"
             android:layout_gravity="bottom"
+            android:layout_marginBottom="8dp"
             android:layout_marginRight="8dp"
             android:src="@drawable/smartphone"/>
 
@@ -32,15 +32,15 @@
 
             <EditText
                 android:id="@+id/signupphone"
-                android:maxLines="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Phone"
                 android:inputType="number"
-                android:textSize="16dp"
                 android:maxLength="10"
+                android:maxLines="1"
                 android:padding="10dp"
-                android:paddingLeft="8dp" />
+                android:paddingLeft="8dp"
+                android:textSize="16dp" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -54,8 +54,8 @@
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginBottom="8dp"
             android:layout_gravity="bottom"
+            android:layout_marginBottom="8dp"
             android:layout_marginRight="8dp"
             android:src="@drawable/padlock"/>
 
@@ -70,10 +70,10 @@
                 android:layout_height="wrap_content"
                 android:hint="Password"
                 android:maxLines="1"
-                app:eyeTint="@color/colorPrimaryText"
-                app:strikeThrough="true"
                 android:paddingLeft="8dp"
-                android:textSize="16dp"/>
+                android:textSize="16dp"
+                app:eyeTint="@color/colorPrimaryText"
+                app:strikeThrough="true"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -89,8 +89,8 @@
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginBottom="8dp"
             android:layout_gravity="bottom"
+            android:layout_marginBottom="8dp"
             android:layout_marginRight="8dp"
             android:src="@drawable/user"/>
 
@@ -99,10 +99,10 @@
             android:layout_height="wrap_content">
 
             <EditText
+                android:id="@+id/signupname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Name"
-                android:id="@+id/signupname"
                 android:maxLines="1"
                 android:padding="10dp"
                 android:paddingLeft="8dp"
@@ -120,8 +120,8 @@
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginBottom="8dp"
             android:layout_gravity="bottom"
+            android:layout_marginBottom="8dp"
             android:layout_marginRight="8dp"
             android:src="@drawable/whatsapp"/>
 
@@ -152,8 +152,8 @@
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginBottom="8dp"
             android:layout_gravity="bottom"
+            android:layout_marginBottom="8dp"
             android:layout_marginRight="8dp"
             android:src="@drawable/mai"/>
 
@@ -177,14 +177,14 @@
     </LinearLayout>
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="SIGNUP"
         android:id="@+id/sugnupbutton"
         style="@style/Widget.AppCompat.Button.Borderless.Colored"
-        android:background="@color/colorPrimary"
-        android:textColor="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:background="@color/colorPrimary"
+        android:text="SIGNUP"
+        android:textColor="#FFFFFF"
         android:textSize="16dp"/>
 
 

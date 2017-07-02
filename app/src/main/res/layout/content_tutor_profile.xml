@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="in.co.snapqa.clientapp0903.TutorProfile"
+    tools:context="in.co.snapqa.clientapp0903.ui.TutorProfile"
     tools:showIn="@layout/activity_tutor_profile">
 
     <LinearLayout
@@ -14,9 +14,9 @@
         android:orientation="vertical">
 
         <RelativeLayout
+            android:id="@+id/tutor_profile_contact_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tutor_profile_contact_layout">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -31,9 +31,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
+                    android:layout_gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:padding="16dp"
-                    android:layout_gravity="center_vertical">
+                    android:padding="16dp">
 
                     <ImageView
                         android:layout_width="24dp"
@@ -41,12 +41,12 @@
                         android:src="@drawable/smartphone"/>
 
                     <TextView
+                        android:id="@+id/tutor_profile_phone_number"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textSize="16dp"
                         android:layout_marginLeft="24dp"
                         android:gravity="center_vertical"
-                        android:id="@+id/tutor_profile_phone_number"/>
+                        android:textSize="16dp"/>
 
                 </LinearLayout>
 
@@ -54,17 +54,17 @@
                 <View
                     android:layout_width="fill_parent"
                     android:layout_height="1dp"
-                    android:background="#c0c0c0"
                     android:layout_marginLeft="24dp"
-                    android:layout_marginRight="24dp"/>
+                    android:layout_marginRight="24dp"
+                    android:background="#c0c0c0"/>
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
+                    android:layout_gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:padding="16dp"
-                    android:layout_gravity="center_vertical">
+                    android:padding="16dp">
 
                     <ImageView
                         android:layout_width="24dp"
@@ -72,20 +72,20 @@
                         android:src="@drawable/whatsapp"/>
 
                     <TextView
+                        android:id="@+id/tutor_profile_whatsapp_number"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textSize="16dp"
                         android:layout_marginLeft="24dp"
                         android:gravity="center_vertical"
-                        android:id="@+id/tutor_profile_whatsapp_number"/>
+                        android:textSize="16dp"/>
 
                 </LinearLayout>
                 <View
                     android:layout_width="fill_parent"
                     android:layout_height="1dp"
-                    android:background="#c0c0c0"
                     android:layout_marginLeft="24dp"
-                    android:layout_marginRight="24dp"/>
+                    android:layout_marginRight="24dp"
+                    android:background="#c0c0c0"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -121,11 +121,11 @@
             android:layout_height="wrap_content">
 
             <android.support.design.widget.FloatingActionButton
+                android:id="@+id/tutor_profile_specialization_edit"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_alignParentRight="true"
                 android:layout_margin="12dp"
-                android:id="@+id/tutor_profile_specialization_edit"
                 android:src="@drawable/ic_edit_black_24dp" />
 
             <LinearLayout
@@ -134,16 +134,16 @@
                 android:layout_margin="24dp"
                 android:background="#FFFFFF"
                 android:elevation="2dp"
-                android:orientation="vertical"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:minHeight="56dp"
                     android:orientation="horizontal"
-                    android:padding="16dp"
-                    android:gravity="center_vertical">
+                    android:padding="16dp">
 
                     <ImageView
                         android:layout_width="24dp"
@@ -151,11 +151,11 @@
                         android:src="@drawable/creativity"/>
 
                     <TextView
+                        android:id="@+id/tutor_profile_specialization"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="16dp"
                         android:layout_marginLeft="24dp"
-                        android:id="@+id/tutor_profile_specialization"/>
+                        android:textSize="16dp"/>
 
                 </LinearLayout>
 
@@ -170,11 +170,11 @@
             android:layout_height="match_parent">
 
             <android.support.design.widget.FloatingActionButton
+                android:id="@+id/tutor_profile_payment_details_edit"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_alignParentRight="true"
                 android:layout_margin="12dp"
-                android:id="@+id/tutor_profile_payment_details_edit"
                 android:src="@drawable/ic_edit_black_24dp" />
 
             <LinearLayout
@@ -188,9 +188,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
+                    android:layout_gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:padding="16dp"
-                    android:layout_gravity="center_vertical">
+                    android:padding="16dp">
 
                     <ImageView
                         android:layout_width="24dp"
@@ -198,29 +198,29 @@
                         android:src="@drawable/idcard"/>
 
                     <TextView
+                        android:id="@+id/tutor_profile_pan_number"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textSize="16dp"
                         android:layout_marginLeft="24dp"
-                        android:hint="7678656465465"
                         android:gravity="center_vertical"
-                        android:id="@+id/tutor_profile_pan_number"/>
+                        android:hint="7678656465465"
+                        android:textSize="16dp"/>
 
                 </LinearLayout>
 
                 <View
                     android:layout_width="fill_parent"
                     android:layout_height="1dp"
-                    android:background="#c0c0c0"
                     android:layout_marginLeft="48dp"
-                    android:layout_marginRight="24dp"/>
+                    android:layout_marginRight="24dp"
+                    android:background="#c0c0c0"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
+                    android:layout_gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:padding="16dp"
-                    android:layout_gravity="center_vertical">
+                    android:padding="16dp">
 
                     <ImageView
                         android:layout_width="24dp"
@@ -228,12 +228,12 @@
                         android:src="@drawable/museum"/>
 
                     <TextView
+                        android:id="@+id/tutor_profile_account_number"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textSize="16dp"
                         android:layout_marginLeft="24dp"
                         android:gravity="center_vertical"
-                        android:id="@+id/tutor_profile_account_number"/>
+                        android:textSize="16dp"/>
 
                 </LinearLayout>
 
@@ -241,17 +241,17 @@
                 <View
                     android:layout_width="fill_parent"
                     android:layout_height="1dp"
-                    android:background="#c0c0c0"
                     android:layout_marginLeft="48dp"
-                    android:layout_marginRight="24dp"/>
+                    android:layout_marginRight="24dp"
+                    android:background="#c0c0c0"/>
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
+                    android:layout_gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:padding="16dp"
-                    android:layout_gravity="center_vertical">
+                    android:padding="16dp">
 
                     <ImageView
                         android:layout_width="22dp"
@@ -259,30 +259,30 @@
                         android:src="@drawable/checked"/>
 
                     <TextView
+                        android:id="@+id/tutor_profile_ifsc_code"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textSize="16dp"
                         android:layout_marginLeft="24dp"
                         android:gravity="center_vertical"
                         android:hint="khfkudshdkjshfkjahf"
-                        android:id="@+id/tutor_profile_ifsc_code"/>
+                        android:textSize="16dp"/>
 
                 </LinearLayout>
 
                 <View
                     android:layout_width="fill_parent"
                     android:layout_height="1dp"
-                    android:background="#c0c0c0"
                     android:layout_marginLeft="48dp"
-                    android:layout_marginRight="24dp"/>
+                    android:layout_marginRight="24dp"
+                    android:background="#c0c0c0"/>
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
+                    android:layout_gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:padding="16dp"
-                    android:layout_gravity="center_vertical">
+                    android:padding="16dp">
 
                     <ImageView
                         android:layout_width="24dp"
@@ -290,41 +290,41 @@
                         android:src="@drawable/wallet"/>
 
                     <TextView
+                        android:id="@+id/tutor_profile_current_balance"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:textSize="16dp"
                         android:layout_marginLeft="24dp"
-                        android:gravity="center_vertical"
                         android:layout_weight="1"
-                        android:id="@+id/tutor_profile_current_balance"/>
+                        android:gravity="center_vertical"
+                        android:textSize="16dp"/>
 
                     <Button
                         android:layout_width="48dp"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/redeem_button_layout"
-                        android:text="Redeem"
-                        android:textSize="8dp"
-                        android:gravity="center"
-                        android:textColor="@color/colorPrimary"
                         android:layout_gravity="center"
-                        android:layout_marginRight="16dp"/>
+                        android:layout_marginRight="16dp"
+                        android:background="@drawable/redeem_button_layout"
+                        android:gravity="center"
+                        android:text="Redeem"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="8dp"/>
 
                 </LinearLayout>
 
                 <View
                     android:layout_width="fill_parent"
                     android:layout_height="1dp"
-                    android:background="#c0c0c0"
                     android:layout_marginLeft="48dp"
-                    android:layout_marginRight="24dp"/>
+                    android:layout_marginRight="24dp"
+                    android:background="#c0c0c0"/>
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
+                    android:layout_gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:padding="16dp"
-                    android:layout_gravity="center_vertical">
+                    android:padding="16dp">
 
                     <ImageView
                         android:layout_width="24dp"

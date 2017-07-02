@@ -1,44 +1,25 @@
-package in.co.snapqa.clientapp0903;
+package in.co.snapqa.clientapp0903.ui;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentManager;
-import android.util.Base64;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.keiferstone.nonet.NoNet;
+import in.co.snapqa.clientapp0903.R;
+import in.co.snapqa.clientapp0903.base.BaseActivity;
+import in.co.snapqa.clientapp0903.utils.AppSharedPreferenceHelper;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
-import me.anwarshahriar.calligrapher.Calligrapher;
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
-
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
-
-    SharedPreferences sharedpreferences;
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    public static final String Key = "key";
+public class MainActivity extends BaseActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     boolean doubleBackToExitPressedOnce = false;
 
@@ -46,53 +27,39 @@ public class MainActivity extends AppCompatActivity
     protected void onStart() {
         super.onStart();
 
-        NoNet.monitor(this)
-                .poll()
-                .snackbar()
-                .start();
-
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        String token = sharedpreferences.getString(Key, "notPresent");
+        String token =
+                AppSharedPreferenceHelper.getString(AppSharedPreferenceHelper.KEY, "notPresent");
 
         Log.d("token:  ", " " + token);
 
-        if(token.equals("notPresent")){
+        if (token.equals("notPresent")) {
             Intent signInFirst = new Intent(MainActivity.this, SignInActivity.class);
             startActivity(signInFirst);
-        }else {
+        } else {
             NewDealsFragment newDealFragment = new NewDealsFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content_frame_main_activity, newDealFragment).commit();
-            getSupportActionBar().setTitle("Available Deals");
+            fragmentManager.beginTransaction().replace(R.id.content_frame_main_activity,
+                    newDealFragment).commit();
         }
-
-
     }
 
     @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    protected String getActivityTitle() {
+        return "Available Deals";
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/opensanslight.ttf")
-                .setFontAttrId(R.attr.fontPath)
-                .build()
-        );
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open,
+                R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -101,15 +68,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView1 = (NavigationView) findViewById(R.id.nav_view_bottom);
         navigationView1.setNavigationItemSelectedListener(this);
-
-        NoNet.configure()
-                .endpoint("https://google.com")
-                .timeout(5)
-                .connectedPollFrequency(60)
-                .disconnectedPollFrequency(1);
-
-
-
     }
 
     @Override
@@ -133,7 +91,7 @@ public class MainActivity extends AppCompatActivity
 
                 @Override
                 public void run() {
-                    doubleBackToExitPressedOnce=false;
+                    doubleBackToExitPressedOnce = false;
                 }
             }, 2000);
         }
@@ -143,7 +101,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        
+
         return true;
     }
 
@@ -158,7 +116,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
 
         }
-        if(id == R.id.tutorProfile){
+        if (id == R.id.tutorProfile) {
 
         }
 
@@ -175,32 +133,34 @@ public class MainActivity extends AppCompatActivity
 
             NewDealsFragment newDealFragment = new NewDealsFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content_frame_main_activity, newDealFragment).commit();
+            fragmentManager.beginTransaction().replace(R.id.content_frame_main_activity,
+                    newDealFragment).commit();
             getSupportActionBar().setTitle("Available Deals");
 
         } else if (id == R.id.ic_menu_live_session) {
 
-            AcceptedLiveSessionFragment acceptedLiveSessionFragment = new AcceptedLiveSessionFragment();
+            AcceptedLiveSessionFragment acceptedLiveSessionFragment =
+                    new AcceptedLiveSessionFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content_frame_main_activity, acceptedLiveSessionFragment).commit();
+            fragmentManager.beginTransaction().replace(R.id.content_frame_main_activity,
+                    acceptedLiveSessionFragment).commit();
             getSupportActionBar().setTitle("Your Live Sessions");
 
         } else if (id == R.id.ic_menu_home_work) {
 
-            AcceptedDeadlineSessionFragment acceptedDeadlineSessionFragment = new AcceptedDeadlineSessionFragment();
+            AcceptedDeadlineSessionFragment acceptedDeadlineSessionFragment =
+                    new AcceptedDeadlineSessionFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content_frame_main_activity, acceptedDeadlineSessionFragment).commit();
+            fragmentManager.beginTransaction().replace(R.id.content_frame_main_activity,
+                    acceptedDeadlineSessionFragment).commit();
             getSupportActionBar().setTitle("Your Deadline Sessions");
 
-        } else if(id == R.id.ic_menu_logout){
+        } else if (id == R.id.ic_menu_logout) {
 
-            SharedPreferences.Editor editor = sharedpreferences.edit();
-            editor.remove(Key);
-            editor.commit();
-            Intent signIn = new Intent(MainActivity.this, SignInActivity.class);
-            startActivity(signIn);
+            AppSharedPreferenceHelper.set(AppSharedPreferenceHelper.KEY, "");
+            moveNextTo(SignInActivity.class);
 
-        } else if (id == R.id.ic_menu_profile){
+        } else if (id == R.id.ic_menu_profile) {
             Intent tutorProfile = new Intent(MainActivity.this, TutorProfile.class);
             startActivity(tutorProfile);
         }

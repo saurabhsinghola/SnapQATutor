@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="in.co.snapqa.clientapp0903.SignInActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="in.co.snapqa.clientapp0903.ui.SignInActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,8 +18,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/mainlogo"
-            android:layout_margin="60dp"/>
+            android:layout_margin="60dp"
+            android:src="@drawable/mainlogo" />
 
     </LinearLayout>
 
@@ -51,7 +51,7 @@
                     android:layout_height="24dp"
                     android:layout_gravity="bottom"
                     android:layout_marginBottom="8dp"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginEnd="8dp"
                     android:src="@drawable/smartphone" />
 
                 <android.support.design.widget.TextInputLayout
@@ -65,12 +65,12 @@
                         android:id="@+id/signinphone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:maxLines="1"
                         android:hint="Phone"
-                        android:paddingLeft="8dp"
-                        android:textSize="16dp"
-                        android:inputType="number"
-                        android:maxLength="10"/>
+                        android:inputType="phone"
+                        android:maxLength="10"
+                        android:maxLines="1"
+                        android:paddingStart="8dp"
+                        android:textSize="16sp" />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -88,7 +88,7 @@
                     android:layout_height="24dp"
                     android:layout_gravity="bottom"
                     android:layout_marginBottom="8dp"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginEnd="8dp"
                     android:src="@drawable/padlock" />
 
                 <android.support.design.widget.TextInputLayout
@@ -102,10 +102,10 @@
                         android:layout_height="wrap_content"
                         android:drawablePadding="8dp"
                         android:hint="Password"
-                        android:paddingLeft="8dp"
                         android:maxLines="1"
+                        android:paddingStart="8dp"
                         android:textAppearance="@style/TextAppearance.FontPath"
-                        android:textSize="16dp"
+                        android:textSize="16sp"
                         app:eyeTint="@color/colorPrimaryText"
                         app:strikeThrough="true" />
 
@@ -133,7 +133,7 @@
                 android:background="@color/colorPrimary"
                 android:text="Log In"
                 android:textColor="#FFFFFF"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
 
         </LinearLayout>
@@ -141,11 +141,11 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/sign_in_forgot_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Forgot Password?"
         android:gravity="center"
-        android:id="@+id/sign_in_forgot_password"/>
+        android:text="Forgot Password?" />
 
     <LinearLayout
         android:layout_width="match_parent"

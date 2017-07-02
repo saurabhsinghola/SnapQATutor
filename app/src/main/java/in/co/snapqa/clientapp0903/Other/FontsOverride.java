@@ -1,12 +1,13 @@
-package in.co.snapqa.clientapp0903.Other;
+package in.co.snapqa.clientapp0903.other;
 
 /**
  * Created by OLA on 16/04/17.
  */
 
-import java.lang.reflect.Field;
 import android.content.Context;
 import android.graphics.Typeface;
+
+import java.lang.reflect.Field;
 
 public final class FontsOverride {
 
