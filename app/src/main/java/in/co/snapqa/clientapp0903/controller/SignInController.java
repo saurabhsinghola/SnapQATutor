@@ -5,6 +5,8 @@ import android.widget.Toast;
 
 import in.co.snapqa.clientapp0903.base.BaseActivity;
 import in.co.snapqa.clientapp0903.interfaces.ApiControllerListener;
+import in.co.snapqa.clientapp0903.models.ChangePasswordRequest;
+import in.co.snapqa.clientapp0903.models.ChangePasswordResponse;
 import in.co.snapqa.clientapp0903.models.ForgotPasswordRequest;
 import in.co.snapqa.clientapp0903.models.ForgotPasswordResponse;
 import in.co.snapqa.clientapp0903.models.OTPResponse;
@@ -128,6 +130,22 @@ public class SignInController {
 
                     @Override
                     public void onFailure(Call<ForgotPasswordResponse> call, Throwable t) {
+
+                    }
+                });
+    }
+
+    public void callChangePassword(ChangePasswordRequest changePasswordRequest) {
+        APIClient.getClient().changePassword(changePasswordRequest).enqueue(
+                new Callback<ChangePasswordResponse>() {
+                    @Override
+                    public void onResponse(Call<ChangePasswordResponse> call,
+                            Response<ChangePasswordResponse> response) {
+                        apiControllerListener.onSuccessResult(response);
+                    }
+
+                    @Override
+                    public void onFailure(Call<ChangePasswordResponse> call, Throwable t) {
 
                     }
                 });
