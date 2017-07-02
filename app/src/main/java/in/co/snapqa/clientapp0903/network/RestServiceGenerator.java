@@ -23,6 +23,7 @@ public class RestServiceGenerator {
     public static <T> T createRestApiService(Class<T> serviceClass, String baseUrl) {
 
         Gson gson = new GsonBuilder().setLenient()
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.sssZ")
                 //To parse null string values as ""
                 .registerTypeAdapterFactory(new JSONParseHelper.NullStringToEmptyAdapterFactory())
                 .create();
