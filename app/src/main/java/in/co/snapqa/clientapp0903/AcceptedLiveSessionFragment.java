@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -43,6 +44,7 @@ public class AcceptedLiveSessionFragment extends Fragment {
     ScheduledDeadlineSessionRecyclerViewAdapter scheduledDeadlineSessionRecyclerViewAdapter;
     ProgressDialog progressDialog;
     TextView tv;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     public AcceptedLiveSessionFragment() {
         // Required empty public constructor
@@ -59,6 +61,8 @@ public class AcceptedLiveSessionFragment extends Fragment {
         calligrapher.setFont(getActivity(), "fonts/opensanslight.ttf", true);
 
         newDealsRecyclerView = (RecyclerView) view.findViewById(R.id.accepted_live_session_recycler_view);
+
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.accepted_live_session_fragment_rv_swipe_refresh);
 
         tv = (TextView) view.findViewById(R.id.accepted_live_session_fragment_rv_tv);
         tv.setVisibility(View.GONE);
@@ -79,7 +83,7 @@ public class AcceptedLiveSessionFragment extends Fragment {
         sharedPreferences = this.getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         String token = sharedPreferences.getString(Key, "notPresent");
 
-        AuthRequest authRequest = new AuthRequest();
+        final AuthRequest authRequest = new AuthRequest();
         authRequest.setToken(token);
 
         Call<NewDealResponses> call = service.liveDeals(authRequest);
@@ -108,8 +112,42 @@ public class AcceptedLiveSessionFragment extends Fragment {
                 progressDialog.dismiss();
                 tv.setVisibility(View.VISIBLE);
             }
+
+
+
         });
 
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Call<NewDealResponses> call = service.liveDeals(authRequest);
+                call.enqueue(new Callback<NewDealResponses>() {
+                    @Override
+                    public void onResponse(Call<NewDealResponses> call, Response<NewDealResponses> response) {
+                        newDealResponses = response.body();
+                        //Log.d("New deal resp:  ", "" + newDealResponses.getResponses().get(2).getAdminName());
+
+                        if(newDealResponses.getResponses().isEmpty()){
+
+                        }else {
+
+                            scheduledDeadlineSessionRecyclerViewAdapter = new ScheduledDeadlineSessionRecyclerViewAdapter(newDealResponses);
+                            layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
+                            newDealsRecyclerView.setLayoutManager(layoutManager);
+                            newDealsRecyclerView.setAdapter(scheduledDeadlineSessionRecyclerViewAdapter);
+
+                        }
+
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+
+                    @Override
+                    public void onFailure(Call<NewDealResponses> call, Throwable t) {
+
+                    }
+                });
+            }
+        });
 
         return view;
     }

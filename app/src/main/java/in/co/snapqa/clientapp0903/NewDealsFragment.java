@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -44,6 +45,7 @@ public class NewDealsFragment extends Fragment {
     public static final String MyPREFERENCES = "MyPrefs" ;
     public static final String Key = "key";
     NewDealsRecyclerViewAdapter newDealsRecyclerViewAdapter;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     TextView tv;
 
@@ -75,6 +77,8 @@ public class NewDealsFragment extends Fragment {
         tv.setVisibility(View.GONE);
         progressDialog = ProgressDialog.show(getActivity(), "Just a sec!", "Finding Deals", true);
 
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.new_deals_fragment_rv_swipe_refresh);
+
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.sssZ")
                 .create();
@@ -89,7 +93,7 @@ public class NewDealsFragment extends Fragment {
         sharedPreferences = this.getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         String token = sharedPreferences.getString(Key, "notPresent");
 
-        AuthRequest authRequest = new AuthRequest();
+        final AuthRequest authRequest = new AuthRequest();
         authRequest.setToken(token);
 
         Call<NewDealResponses> call = service.newDeals(authRequest);
@@ -122,6 +126,41 @@ public class NewDealsFragment extends Fragment {
                 progressDialog.dismiss();
                 tv.setVisibility(View.VISIBLE);
 
+            }
+        });
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+                Call<NewDealResponses> call = service.newDeals(authRequest);
+
+                call.enqueue(new Callback<NewDealResponses>() {
+                    @Override
+                    public void onResponse(Call<NewDealResponses> call, Response<NewDealResponses> response) {
+                        if(response.body().getMessage().equals("Successful")){
+                            newDealResponses = response.body();
+                            //Log.d("New deal resp:  ", "" + newDealResponses.getResponses().get(2).getAdminName());
+
+                            newDealsRecyclerViewAdapter = new NewDealsRecyclerViewAdapter(newDealResponses);
+                            layoutManager = new LinearLayoutManager(getActivity());
+                            newDealsRecyclerView.setLayoutManager(layoutManager);
+                            newDealsRecyclerView.setAdapter(newDealsRecyclerViewAdapter);
+                        }else if(response.body().getMessage().equals("phoneNotVerified")){
+                            Intent verifyOTP = new Intent(getActivity(), VerifyOTPActivity.class);
+                            startActivity(verifyOTP);
+                        }else if(response.body().getMessage().equals("subjectsNotAdded")){
+                            Intent subjectIntent = new Intent(getActivity(), SelectSubjectActivity.class);
+                            startActivity(subjectIntent);
+                        }
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+
+                    @Override
+                    public void onFailure(Call<NewDealResponses> call, Throwable t) {
+
+                    }
+                });
             }
         });
 

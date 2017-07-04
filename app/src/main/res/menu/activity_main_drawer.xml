@@ -4,11 +4,11 @@
     <group android:checkableBehavior="single"
         android:id="@+id/ic_menu_live">
         <item
-            android:title="Unaccepted Deals" >
+            android:title="Unaccepted Sessions" >
             <menu>
                 <item
                     android:id="@+id/ic_menu_new_deals"
-                    android:title="New Deals"
+                    android:title="New Sessions"
                     android:icon="@drawable/favoritesbutton"/>
 
 
@@ -19,7 +19,7 @@
     <group android:checkableBehavior="single"
         android:id="@+id/ic_menu_accepted">
         <item
-            android:title="Accepted Deals" >
+            android:title="Accepted Sessions" >
             <menu>
                 <item
                     android:id="@+id/ic_menu_home_work"

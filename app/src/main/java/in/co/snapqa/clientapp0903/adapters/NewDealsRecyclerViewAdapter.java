@@ -50,7 +50,7 @@ public class NewDealsRecyclerViewAdapter extends RecyclerView.Adapter<NewDealsRe
 
 
     NewDealResponses newDealResponsess;
-    String ftime;
+    String ftime, gtime;
     Date date;
     Calendar cal;
     AlertDialog.Builder alertDialog;
@@ -99,6 +99,8 @@ public class NewDealsRecyclerViewAdapter extends RecyclerView.Adapter<NewDealsRe
         cal = Calendar.getInstance();
         cal.setTime(date);
         int month = cal.get(Calendar.MONTH) + 1;
+        cal.add(Calendar.MINUTE, 30);
+        cal.add(Calendar.HOUR, 5);
 
 
 
@@ -135,6 +137,51 @@ public class NewDealsRecyclerViewAdapter extends RecyclerView.Adapter<NewDealsRe
             }
         }
 
+        if(newDealResponsess.getResponses().get(position).getDealType().equals("Live Session")){
+            DateFormat formatte = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+            try {
+                date = formatte.parse(String.valueOf(newDealResponsess.getResponses().get(position).getTimeFrom()));
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            cal = Calendar.getInstance();
+            cal.setTime(date);
+            int months = cal.get(Calendar.MONTH) + 1;
+            cal.add(Calendar.MINUTE, 30);
+            cal.add(Calendar.HOUR, 5);
+
+            if(Calendar.HOUR<10){
+
+                if(Calendar.MINUTE<10){
+                    gtime = "0" +cal.get(Calendar.HOUR) + ":" + "0"+ cal.get(Calendar.MINUTE);
+                }else {
+                    gtime = "0" +cal.get(Calendar.HOUR) + ":" + cal.get(Calendar.MINUTE);
+                }
+            }else {
+                if(Calendar.MINUTE<10){
+                    gtime = cal.get(Calendar.HOUR) + ":" + "0"+ cal.get(Calendar.MINUTE);
+                }else {
+                    gtime = cal.get(Calendar.HOUR) + ":" + cal.get(Calendar.MINUTE);
+                }
+            }
+
+            if(Calendar.DATE<10){
+                if(Calendar.MONTH < 10){
+                    testDate = "0" + cal.get(Calendar.DATE) + "/" + "0" + months + "/" + cal.get(Calendar.YEAR);
+                }else {
+                    testDate = "0" + cal.get(Calendar.DATE) + "/" + months + "/" + cal.get(Calendar.YEAR);
+                }
+            }else {
+                if(Calendar.MONTH < 10){
+                    testDate = cal.get(Calendar.DATE) + "/" + "0" + months + "/" + cal.get(Calendar.YEAR);
+                }else {
+                    testDate = cal.get(Calendar.DATE) + "/" + months + "/" + cal.get(Calendar.YEAR);
+                }
+            }
+        }
+
         String testDate = cal.get(Calendar.DATE) + "/" + month + "/" + cal.get(Calendar.YEAR);
         holder.date.setText(testDate);
 
@@ -148,10 +195,12 @@ public class NewDealsRecyclerViewAdapter extends RecyclerView.Adapter<NewDealsRe
         }else{
             holder.leftIV.setBackgroundResource(R.drawable.hourglass);
             holder.type.setText("Live Session");
-            holder.leftTV.setText(ftime);
+            holder.leftTV.setText(gtime);
             holder.rightIV.setBackgroundResource(R.drawable.hourglass);
             holder.rightTV.setText(ftime);
         }
+
+
 
         holder.linearLayout.setVisibility(LinearLayout.GONE);
 

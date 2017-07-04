@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -44,6 +45,7 @@ public class AcceptedDeadlineSessionFragment extends Fragment {
     ScheduledDeadlineSessionRecyclerViewAdapter scheduledDeadlineSessionRecyclerViewAdapter;
     ProgressDialog progressDialog;
     TextView tv;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     public AcceptedDeadlineSessionFragment() {
         // Required empty public constructor
@@ -56,6 +58,7 @@ public class AcceptedDeadlineSessionFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_accepted_deadline_session, container, false);
         newDealsRecyclerView = (RecyclerView) view.findViewById(R.id.accepted_deadline_session_fragment_rv);
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.accepted_deadline_session_fragment_rv_swipe_refresh);
 
         Calligrapher calligrapher = new Calligrapher(getActivity());
         calligrapher.setFont(getActivity(), "fonts/opensanslight.ttf", true);
@@ -79,7 +82,7 @@ public class AcceptedDeadlineSessionFragment extends Fragment {
         sharedPreferences = this.getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         String token = sharedPreferences.getString(Key, "notPresent");
 
-        AuthRequest authRequest = new AuthRequest();
+        final AuthRequest authRequest = new AuthRequest();
         authRequest.setToken(token);
 
         Call<NewDealResponses> call = service.hwDeals(authRequest);
@@ -109,6 +112,32 @@ public class AcceptedDeadlineSessionFragment extends Fragment {
                 newDealsRecyclerView.setVisibility(RecyclerView.GONE);
                 tv.setVisibility(View.VISIBLE);
 
+            }
+        });
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Call<NewDealResponses> call = service.hwDeals(authRequest);
+                call.enqueue(new Callback<NewDealResponses>() {
+                    @Override
+                    public void onResponse(Call<NewDealResponses> call, Response<NewDealResponses> response) {
+                        newDealResponses = response.body();
+                        //Log.d("New deal resp:  ", "" + newDealResponses.getResponses().get(2).getAdminName());
+
+                        scheduledDeadlineSessionRecyclerViewAdapter = new ScheduledDeadlineSessionRecyclerViewAdapter(newDealResponses);
+                        layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
+                        newDealsRecyclerView.setLayoutManager(layoutManager);
+                        newDealsRecyclerView.setAdapter(scheduledDeadlineSessionRecyclerViewAdapter);
+                        swipeRefreshLayout.setRefreshing(false);
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<NewDealResponses> call, Throwable t) {
+
+                    }
+                });
             }
         });
 

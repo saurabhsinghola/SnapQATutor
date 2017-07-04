@@ -48,7 +48,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_weight="1"
-                    android:text="Mechanical"
+                    android:text="Subject"
                     android:textColor="#616161"
                     android:textSize="20dp"
                     />
@@ -180,7 +180,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="4dp"
                         android:layout_marginLeft="8dp"
-                        android:text="Moran and Cengel"
                         android:textColor="#616161"
                         android:textSize="12dp" />
 
@@ -212,7 +211,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
-                        android:text="Moran and Cengel"
                         android:textColor="#616161"
                         android:textSize="12dp" />
 
